@@ -11,3 +11,5 @@
 ### ربط الدومين (Spaceship)
 
 في DNS للدومين: انسخ من Render **Custom Domains** سجلات **CNAME** / **A** كما هي، ثم انتظر التفعيل (قد يستغرق وقتاً).
+
+فحص الصحة: `GET /health` يعيد `ok` (يستخدمه Render في `render.yaml`).
