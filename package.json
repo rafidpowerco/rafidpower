@@ -4,6 +4,14 @@
   "description": "الرافدين للموازين — موقع تعريفي (Vite + React + Express)",
   "type": "module",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rafidpowerco/rafidpower.git"
+  },
+  "homepage": "https://rafidpower.xyz",
+  "bugs": {
+    "url": "https://github.com/rafidpowerco/rafidpower/issues"
+  },
   "engines": {
     "node": ">=22"
   },

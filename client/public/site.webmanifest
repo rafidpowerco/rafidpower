@@ -1,0 +1,10 @@
+{
+  "name": "الرافدين للموازين - Rafid Scale",
+  "short_name": "Rafid Scale",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1a3a52",
+  "lang": "ar",
+  "dir": "rtl"
+}
