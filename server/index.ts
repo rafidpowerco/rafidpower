@@ -10,6 +10,10 @@ async function startServer() {
   const app = express();
   const server = createServer(app);
 
+  if (process.env.NODE_ENV === "production") {
+    app.set("trust proxy", 1);
+  }
+
   // Serve static files from dist/public in production
   const staticPath =
     process.env.NODE_ENV === "production"
@@ -17,6 +21,10 @@ async function startServer() {
       : path.resolve(__dirname, "..", "dist", "public");
 
   app.use(express.static(staticPath));
+
+  app.get("/health", (_req, res) => {
+    res.status(200).type("text/plain").send("ok");
+  });
 
   // Handle client-side routing - serve index.html for all routes
   app.get("*", (_req, res) => {

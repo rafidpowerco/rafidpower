@@ -9,7 +9,7 @@ services:
     branch: main
     region: frankfurt
     dockerfilePath: ./Dockerfile
-    healthCheckPath: /
+    healthCheckPath: /health
     envVars:
       - key: NODE_ENV
         value: production
