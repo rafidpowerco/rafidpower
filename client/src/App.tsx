@@ -34,7 +34,7 @@ function App() {
         <TooltipProvider>
           <Toaster />
           <Router />
-          <WhatsAppButton />
+          {/* <WhatsAppButton /> */}
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>

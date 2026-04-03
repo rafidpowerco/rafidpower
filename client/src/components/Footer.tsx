@@ -54,12 +54,12 @@ export default function Footer() {
                   من نحن
                 </a>
               </li>
-
               <li>
                 <a href="#contact" className="text-gray-300 hover:text-[#e63946] transition-colors">
                   اتصل بنا
                 </a>
               </li>
+
             </ul>
           </div>
 
@@ -102,8 +102,8 @@ export default function Footer() {
               </li>
               <li className="flex gap-2">
                 <Mail size={18} className="text-[#e63946] flex-shrink-0 mt-1" />
-                <a href="#contact" className="text-gray-300 hover:text-[#e63946] transition-colors">
-                  تواصل معنا عبر النموذج
+                <a href="mailto:info@rafidpower.com" className="text-gray-300 hover:text-[#e63946] transition-colors">
+                  info@rafidpower.com
                 </a>
               </li>
               <li className="flex gap-2">

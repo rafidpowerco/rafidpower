@@ -38,8 +38,9 @@ export default function ContactSection() {
     {
       icon: Mail,
       label: 'البريد الإلكتروني',
-      value: 'ah@rafidpower.com',
-      href: 'mailto:ah@rafidpower.com',
+      value: 'info@rafidpower.com',
+      href: 'mailto:info@rafidpower.com',
+
     },
     {
       icon: MapPin,
