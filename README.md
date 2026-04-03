@@ -46,3 +46,9 @@ docker compose up --build
 ## المستودع
 
 https://github.com/rafidpowerco/rafidpower
+
+## إذا تعثّر النشر على Render
+
+- **Repository not found:** اربط GitHub من Render (أيقونة GitHub) وامنح الوصول لمستودع `rafidpowerco/rafidpower`.
+- **Build failed:** من **Logs** في الخدمة، انسخ آخر 20 سطر وأرسلها للدعم أو راجعها.
+- **الدومين لا يعمل:** تأكد أن سجلات DNS في Spaceship **نفس** ما عرضه Render، وانتظر حتى ساعة بعد الحفظ.
