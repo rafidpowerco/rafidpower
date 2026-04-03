@@ -28,9 +28,23 @@ docker compose up --build
 
 ## النشر على Render
 
+`render.yaml` يحدد خطة **Free** (يمكن ترقيتها لاحقاً من لوحة Render إن احتجت أداءً أقل انقطاعاً).
+
+> **ملاحظة Free:** الخدمة قد تدخل وضع السكون بعد خمول، وأول زيارة بعدها قد تستغرق حوالي دقيقة حتى تعود للعمل — هذا سلوك Render وليس خطأ في الموقع.
+
 1. اضغط الزر أعلاه، أو [لوحة Render](https://dashboard.render.com) → **New** → **Blueprint** → المستودع `rafidpowerco/rafidpower` (يُقرأ `render.yaml`).
 2. أو **Web Service** → نفس المستودع → **Docker** من `Dockerfile`.
 3. بعد **Deploy** → **Settings** → **Custom Domains** → أضف `rafidpower.xyz` وطبّق سجلات DNS في Spaceship كما تعرضها Render.
+
+### قائمة تحقق سريعة (يدوي)
+
+| # | الخطوة | مكان التنفيذ |
+|---|--------|----------------|
+| 1 | إنشاء خدمة من المستودع | Render |
+| 2 | التأكد أن الحالة **Live** والرابط `*.onrender.com` يفتح | متصفح |
+| 3 | إضافة الدومين `rafidpower.xyz` | Render → Custom Domains |
+| 4 | نسخ سجلات DNS كما هي | إلى Spaceship → DNS |
+| 5 | فتح `https://rafidpower.xyz` بعد الانتشار | متصفح |
 
 ### ربط الدومين (Spaceship)
 

@@ -21,6 +21,7 @@
     "start": "cross-env NODE_ENV=production node dist/index.js",
     "preview": "vite preview --host",
     "check": "tsc --noEmit",
+    "verify": "pnpm run build && pnpm run check",
     "format": "prettier --write .",
     "publish:github": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/publish-github.ps1"
   },

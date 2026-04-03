@@ -25,8 +25,7 @@ jobs:
           node-version-file: ".nvmrc"
           cache: pnpm
 
-      - name: Install and build
+      - name: Install and verify
         run: |
           pnpm install --frozen-lockfile
-          pnpm run build
-          pnpm run check
+          pnpm run verify
