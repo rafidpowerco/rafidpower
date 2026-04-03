@@ -1,10 +1,13 @@
 # https://render.com/docs/blueprint-spec
-# Deploy: connect GitHub repo → New Blueprint → select this file, or Web Service → Docker.
+# New Blueprint → connect repo, أو زر "Deploy to Render" في README
 
 services:
   - type: web
     name: rafidpower
     runtime: docker
+    repo: https://github.com/rafidpowerco/rafidpower
+    branch: main
+    region: frankfurt
     dockerfilePath: ./Dockerfile
     healthCheckPath: /
     envVars:
