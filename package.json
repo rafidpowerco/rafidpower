@@ -1,6 +1,7 @@
 {
   "name": "rafidpower",
   "version": "1.0.0",
+  "description": "الرافدين للموازين — موقع تعريفي (Vite + React + Express)",
   "type": "module",
   "license": "MIT",
   "engines": {

@@ -43,9 +43,11 @@ docker compose up --build
 - انسخ `.env.example` إلى `.env` للتطوير.
 - لـ **Umami**: عيّن `VITE_ANALYTICS_ENDPOINT` و`VITE_ANALYTICS_WEBSITE_ID` ثم أعد البناء.
 
-## المستودع
+## المستودع والترخيص
 
-https://github.com/rafidpowerco/rafidpower
+- المستودع: https://github.com/rafidpowerco/rafidpower  
+- الترخيص: **MIT** — انظر ملف `LICENSE`.
+
 
 ## إذا تعثّر النشر على Render
 
