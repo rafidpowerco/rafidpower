@@ -45,10 +45,16 @@ export default function Footer() {
                 </a>
               </li>
               <li>
+                <a href="#projects" className="text-gray-300 hover:text-[#e63946] transition-colors">
+                  المشاريع
+                </a>
+              </li>
+              <li>
                 <a href="#about" className="text-gray-300 hover:text-[#e63946] transition-colors">
                   من نحن
                 </a>
               </li>
+
               <li>
                 <a href="#contact" className="text-gray-300 hover:text-[#e63946] transition-colors">
                   اتصل بنا
@@ -96,8 +102,8 @@ export default function Footer() {
               </li>
               <li className="flex gap-2">
                 <Mail size={18} className="text-[#e63946] flex-shrink-0 mt-1" />
-                <a href="mailto:rafidcompany@gmail.com" className="text-gray-300 hover:text-[#e63946] transition-colors">
-                  rafidcompany@gmail.com
+                <a href="#contact" className="text-gray-300 hover:text-[#e63946] transition-colors">
+                  تواصل معنا عبر النموذج
                 </a>
               </li>
               <li className="flex gap-2">
@@ -107,8 +113,28 @@ export default function Footer() {
                 </span>
               </li>
             </ul>
+            
+            {/* Newsletter */}
+            <div className="mt-8 pt-8 border-t border-gray-700">
+              <h4 className="font-bold text-sm mb-4 uppercase tracking-wider text-[#e63946]">النشرة البريدية</h4>
+              <form className="flex gap-2">
+                <input 
+                  type="email" 
+                  placeholder="البريد الإلكتروني" 
+                  className="bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm flex-grow focus:outline-none focus:border-[#e63946] transition-colors"
+                  required
+                />
+                <button 
+                  type="submit"
+                  className="bg-[#e63946] hover:bg-[#d62828] text-white px-4 py-2 rounded-lg text-sm font-bold transition-colors"
+                >
+                  اشتراك
+                </button>
+              </form>
+            </div>
           </div>
         </div>
+
 
         {/* Divider */}
         <div className="border-t border-gray-700 py-8">
@@ -124,7 +150,9 @@ export default function Footer() {
                 href="https://www.facebook.com/rafid.scale/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-[#e63946] rounded-full flex items-center justify-center hover:bg-[#d62828] transition-colors"
+                title="صفحة الفيسبوك"
+                aria-label="صفحة الفيسبوك للرافدين للموازين"
+                className="w-10 h-10 bg-[#e63946] rounded-full flex items-center justify-center hover:bg-[#d62828] transition-all hover:scale-110 shadow-lg shadow-[#e63946]/30"
               >
                 <Facebook size={20} />
               </a>
@@ -132,6 +160,18 @@ export default function Footer() {
           </div>
         </div>
       </div>
+      
+      {/* Back to top button */}
+      <button 
+        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        title="العودة للأعلى"
+        aria-label="العودة إلى أعلى الصفحة"
+        className="fixed bottom-8 right-8 w-12 h-12 bg-[#e63946] text-white rounded-full flex items-center justify-center shadow-2xl hover:bg-[#d62828] transition-all z-40 animate-fade-in sm:flex hidden"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+      </button>
     </footer>
+
+
   );
 }

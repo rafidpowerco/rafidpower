@@ -49,10 +49,11 @@ export default function AboutSection() {
           <div className="relative">
             <div className="bg-white/10 backdrop-blur rounded-lg overflow-hidden shadow-2xl border border-white/20">
               <img
-                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663444897836/WmNVZbhDTyPDbF89RZeceN/industrial-facility-6WEbJBuMKQQ6KMcVZx6Q9o.webp"
-                alt="مرافق الرافدين"
-                className="w-full h-full object-cover"
+                src="/images/about.png"
+                alt="شركة الرافدين للموازين"
+                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
               />
+
             </div>
 
             {/* Stats Overlay */}

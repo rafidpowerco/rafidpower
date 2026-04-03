@@ -1,5 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import QuoteDialog from './QuoteDialog';
+
 
 /**
  * Products Section - Modern Industrial Design
@@ -7,29 +9,30 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
  * Design: Grid layout with hover effects
  */
 export default function ProductsSection() {
-  const products = [
+const products = [
     {
       title: 'موازين الشاحنات الجسرية',
-      description: 'موازين دقيقة لقياس وزن الشاحنات الثقيلة والمركبات التجارية',
-      image: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663444897836/WmNVZbhDTyPDbF89RZeceN/hero-background-czgpzoZa584zXmWvRuHAWF.webp',
-      capacity: 'حتى 100 طن',
-      accuracy: 'دقة ± 0.1%',
+      description: 'موازين دقيقة وعالية التحمل لنظام توزين الشاحنات، مصممة لتحمل أقسى الظروف الصناعية.',
+      image: '/images/product-1.png',
+      capacity: 'حتى 150 طن',
+      accuracy: 'دقة فائقة ± 0.01%',
     },
     {
-      title: 'لوحات التحكم الرقمية',
-      description: 'لوحات تحكم حديثة مع شاشات عرض LED عالية الوضوح',
-      image: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663444897836/WmNVZbhDTyPDbF89RZeceN/service-scales-BmpGzRznN5dmeSvax9CsoK.webp',
-      capacity: 'متعددة السعات',
-      accuracy: 'دقة ± 0.05%',
+      title: 'أنظمة التحكم الرقمية',
+      description: 'رؤوس توزين ذكية مع شاشات LED وواجهات برمجية لربط الموازين بأنظمة الإدارة.',
+      image: '/images/product-2.png',
+      capacity: 'متعدد الوظائف',
+      accuracy: 'معالج سداسي النواة',
     },
     {
-      title: 'أنظمة الصيانة والخدمة',
-      description: 'خدمات صيانة شاملة وقطع غيار أصلية عالية الجودة',
-      image: 'https://d2xsxph8kpxj0f.cloudfront.net/310519663444897836/WmNVZbhDTyPDbF89RZeceN/maintenance-service-89EKeb8VKQcfojCvixC7FK.webp',
-      capacity: 'جميع الموديلات',
-      accuracy: 'ضمان شامل',
+      title: 'خدمات الصيانة والتدقيق',
+      description: 'فريق فني متكامل لصيانة ومعايرة الموازين لضمان دقة القراءات واستمرارية العمل.',
+      image: '/images/product-3.png',
+      capacity: 'دعم 24/7',
+      accuracy: 'شهادات معتمدة',
     },
   ];
+
 
   return (
     <section id="products" className="py-20 bg-white">
@@ -86,9 +89,15 @@ export default function ProductsSection() {
                 </div>
 
                 {/* CTA */}
-                <Button className="w-full bg-[#1a3a52] hover:bg-[#2d5a7b] text-white font-semibold">
-                  اطلب المزيد من المعلومات
-                </Button>
+                <QuoteDialog 
+                  productTitle={product.title} 
+                  triggerChild={
+                    <Button className="w-full bg-[#1a3a52] hover:bg-[#2d5a7b] text-white font-semibold">
+                      اطلب المزيد من المعلومات
+                    </Button>
+                  } 
+                />
+
               </CardContent>
             </Card>
           ))}

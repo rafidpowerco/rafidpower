@@ -38,8 +38,8 @@ export default function ContactSection() {
     {
       icon: Mail,
       label: 'البريد الإلكتروني',
-      value: 'rafidcompany@gmail.com',
-      href: 'mailto:rafidcompany@gmail.com',
+      value: 'ah@rafidpower.com',
+      href: 'mailto:ah@rafidpower.com',
     },
     {
       icon: MapPin,
@@ -172,14 +172,17 @@ export default function ContactSection() {
             {/* Map */}
             <div className="mt-8 rounded-lg overflow-hidden shadow-lg h-64 bg-gray-200">
               <iframe
+                title="موقع شركة الرافدين للموازين في أربيل"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
                 loading="lazy"
                 allowFullScreen
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3197.8456789012345!2d44.0!3d36.2!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzYuMjDCsCANIDQ0LjDCsCBF!5e0!3m2!1sar!2siq!4v1234567890"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3215.11894954316!2d44.0298516!3d36.2145326!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzYuMjE0NSIgTiA0NC4wMjk4IiBFOA!5e0!3m2!1sar!2siq!4v1712140000000"
               ></iframe>
+
             </div>
+
           </div>
         </div>
       </div>

@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import QuoteDialog from './QuoteDialog';
+
 
 /**
  * Header Component - Modern Industrial Design
@@ -14,23 +16,26 @@ export default function Header() {
     { label: 'الرئيسية', href: '#home' },
     { label: 'الخدمات', href: '#services' },
     { label: 'المنتجات', href: '#products' },
+    { label: 'المشاريع', href: '#projects' },
     { label: 'من نحن', href: '#about' },
     { label: 'اتصل بنا', href: '#contact' },
   ];
+
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-white shadow-md border-b-4 border-[#e63946]">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         {/* Logo */}
-        <div className="flex items-center gap-3">
-          <div className="w-12 h-12 bg-gradient-to-br from-[#1a3a52] to-[#2d5a7b] rounded-lg flex items-center justify-center">
-            <span className="text-white font-bold text-lg">RF</span>
+        <div className="flex items-center gap-4">
+          <div className="w-16 h-16 relative overflow-hidden rounded-xl shadow-inner bg-white/50 backdrop-blur-sm p-1 border border-gray-100">
+            <img src="/logo.png" alt="Rafid Scale Logo" className="w-full h-full object-contain" />
           </div>
           <div className="flex flex-col">
-            <h1 className="text-lg font-bold text-[#1a3a52]">الرافدين</h1>
-            <p className="text-xs text-[#e63946] font-semibold">Rafid Scale</p>
+            <h1 className="text-2xl font-black text-[#1a3a52] leading-tight tracking-tight">الرافدين</h1>
+            <p className="text-xs text-[#e63946] font-bold tracking-[0.15em] uppercase">Rafidain Scales Co.</p>
           </div>
         </div>
+
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
@@ -47,10 +52,9 @@ export default function Header() {
 
         {/* CTA Button */}
         <div className="hidden md:block">
-          <Button className="bg-[#e63946] hover:bg-[#d62828] text-white font-semibold">
-            طلب عرض سعر
-          </Button>
+          <QuoteDialog />
         </div>
+
 
         {/* Mobile Menu Button */}
         <button
@@ -75,9 +79,16 @@ export default function Header() {
                 {item.label}
               </a>
             ))}
-            <Button className="w-full bg-[#e63946] hover:bg-[#d62828] text-white">
-              طلب عرض سعر
-            </Button>
+            <div className="pt-2">
+              <QuoteDialog 
+                triggerChild={
+                  <Button className="w-full bg-[#1a3a52] hover:bg-[#2d5a7b] text-white">
+                    طلب عرض سعر
+                  </Button>
+                }
+              />
+            </div>
+
           </div>
         </nav>
       )}
