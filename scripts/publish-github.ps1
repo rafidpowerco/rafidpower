@@ -1,8 +1,8 @@
-# Creates github.com/rafidpowerco/rafid-scale-website if missing, then pushes main.
+# Creates github.com/rafidpowerco/rafidpower if missing, then pushes main.
 # Usage (PowerShell):  $env:GITHUB_TOKEN = "ghp_xxxxxxxx"; .\scripts\publish-github.ps1
 $ErrorActionPreference = "Stop"
 $owner = "rafidpowerco"
-$name = "rafid-scale-website"
+$name = "rafidpower"
 $token = $env:GITHUB_TOKEN
 if (-not $token) {
   Write-Error "Set GITHUB_TOKEN to a classic PAT with repo scope (https://github.com/settings/tokens)."

@@ -3,7 +3,7 @@
 
 services:
   - type: web
-    name: rafid-scale-website
+    name: rafidpower
     runtime: docker
     dockerfilePath: ./Dockerfile
     healthCheckPath: /
