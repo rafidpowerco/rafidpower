@@ -1,0 +1,12 @@
+# https://render.com/docs/blueprint-spec
+# Deploy: connect GitHub repo → New Blueprint → select this file, or Web Service → Docker.
+
+services:
+  - type: web
+    name: rafid-scale-website
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /
+    envVars:
+      - key: NODE_ENV
+        value: production
