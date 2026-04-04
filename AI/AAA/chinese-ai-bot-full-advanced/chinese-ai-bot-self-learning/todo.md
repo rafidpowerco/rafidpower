@@ -17,3 +17,7 @@
 ## مرجع بنية سريع
 
 - **`docs/ARCHITECTURE_AR.md`** — تدفق المنسّق، tRPC، RAG، الأمان.
+
+## مستودع Git
+
+- المشروع مدمَج كمجلد عادي داخل monorepo **`rafidpower`** (لم يعد submodule). نسخة احتياطية محلية لتاريخ Git السابق قد تُسمّى `.git_nested_repo_backup` وتُستبعد من الإيداع.
