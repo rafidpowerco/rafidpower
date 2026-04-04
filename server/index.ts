@@ -33,7 +33,15 @@ async function startServer() {
       ? path.resolve(__dirname, "public")
       : path.resolve(__dirname, "..", "dist", "public");
 
-  app.use(express.static(staticPath));
+  app.use(
+    express.static(staticPath, {
+      setHeaders(res, filePath) {
+        if (filePath.endsWith("site.webmanifest")) {
+          res.setHeader("Content-Type", "application/manifest+json; charset=utf-8");
+        }
+      },
+    }),
+  );
 
   app.get("/health", (_req, res) => {
     res.status(200).type("text/plain").send("ok");
@@ -41,7 +49,15 @@ async function startServer() {
 
   // Handle client-side routing - serve index.html for all routes
   app.get("*", (_req, res) => {
-    res.sendFile(path.join(staticPath, "index.html"));
+    const indexFile = path.join(staticPath, "index.html");
+    res.sendFile(indexFile, (err) => {
+      if (err) {
+        console.error(err);
+        if (!res.headersSent) {
+          res.status(500).type("text/plain").send("Internal Server Error");
+        }
+      }
+    });
   });
 
   const port = Number(process.env.PORT) || 3000;
