@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Phone, Mail, MapPin, Clock } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, Globe } from 'lucide-react';
 import { useState } from 'react';
 
 /**
@@ -32,21 +32,32 @@ export default function ContactSection() {
     {
       icon: Phone,
       label: 'الهاتف',
-      value: '+964 770 165 9994',
-      href: 'tel:+964770165994',
+      value: '+964 772 554 9994',
+      href: 'tel:+9647725549994',
+    },
+    {
+      icon: Phone,
+      label: 'الهاتف الإضافي',
+      value: '+964 770 188 6017',
+      href: 'tel:+9647701886017',
     },
     {
       icon: Mail,
       label: 'البريد الإلكتروني',
-      value: 'info@rafidpower.com',
-      href: 'mailto:info@rafidpower.com',
-
+      value: 'info@rafidpower.xyz',
+      href: 'mailto:info@rafidpower.xyz',
     },
     {
       icon: MapPin,
       label: 'العنوان',
       value: 'Villa 472 / Zin City, Erbil, Iraq',
       href: '#',
+    },
+    {
+      icon: Globe,
+      label: 'الموقع الإلكتروني',
+      value: 'www.rafidpower.xyz',
+      href: 'https://www.rafidpower.xyz',
     },
     {
       icon: Clock,
@@ -162,8 +173,8 @@ export default function ContactSection() {
                     <p className="font-semibold text-[#1a3a52] group-hover:text-white">
                       {info.label}
                     </p>
-                    <p className="text-gray-600 group-hover:text-white/90">
-                      {info.value}
+                    <p className="text-gray-600 group-hover:text-white/90 font-mono" dir="ltr">
+                      <bdi>{info.value}</bdi>
                     </p>
                   </div>
                 </a>

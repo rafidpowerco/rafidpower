@@ -3,8 +3,9 @@
 ## الموقع
 
 - **العنوان**: Villa 472 / Zin City, Near Kurdistan TV / Shaklawa Road / Erbil City / Iraq
-- **رقم الهاتف**: +964 770 165 9994
+- **رقم الهاتف**: +964 772 554 9994 / +964 770 188 6017
 - **البريد الإلكتروني**: info@rafidpower.xyz
+- **الموقع الإلكتروني**: www.rafidpower.xyz
 
 ## معلومات الشركة
 

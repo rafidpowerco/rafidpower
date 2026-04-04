@@ -1,4 +1,4 @@
-import { Facebook, Phone, Mail, MapPin } from 'lucide-react';
+import { Facebook, Phone, Mail, MapPin, Globe } from 'lucide-react';
 
 /**
  * Footer Component - Modern Industrial Design
@@ -54,12 +54,12 @@ export default function Footer() {
                   من نحن
                 </a>
               </li>
+
               <li>
                 <a href="#contact" className="text-gray-300 hover:text-[#e63946] transition-colors">
                   اتصل بنا
                 </a>
               </li>
-
             </ul>
           </div>
 
@@ -96,14 +96,25 @@ export default function Footer() {
             <ul className="space-y-3">
               <li className="flex gap-2">
                 <Phone size={18} className="text-[#e63946] flex-shrink-0 mt-1" />
-                <a href="tel:+964770165994" className="text-gray-300 hover:text-[#e63946] transition-colors">
-                  +964 770 165 9994
-                </a>
+                <div className="flex flex-col">
+                  <a href="tel:+9647725549994" className="text-gray-300 hover:text-[#e63946] transition-colors font-mono" dir="ltr">
+                    <bdi>+964 772 554 9994</bdi>
+                  </a>
+                  <a href="tel:+9647701886017" className="text-gray-300 hover:text-[#e63946] transition-colors font-mono" dir="ltr">
+                    <bdi>+964 770 188 6017</bdi>
+                  </a>
+                </div>
               </li>
               <li className="flex gap-2">
                 <Mail size={18} className="text-[#e63946] flex-shrink-0 mt-1" />
-                <a href="mailto:info@rafidpower.com" className="text-gray-300 hover:text-[#e63946] transition-colors">
-                  info@rafidpower.com
+                <a href="mailto:info@rafidpower.xyz" className="text-gray-300 hover:text-[#e63946] transition-colors">
+                  info@rafidpower.xyz
+                </a>
+              </li>
+              <li className="flex gap-2">
+                <Globe size={18} className="text-[#e63946] flex-shrink-0 mt-1" />
+                <a href="https://www.rafidpower.xyz" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-[#e63946] transition-colors">
+                  www.rafidpower.xyz
                 </a>
               </li>
               <li className="flex gap-2">

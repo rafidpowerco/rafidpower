@@ -23,6 +23,27 @@ export default function ProjectsSection() {
       image: '/images/projects/project-3.png',
       category: 'صيانة'
     },
+    {
+      id: 4,
+      title: 'ميزان شاحنات ذكي',
+      location: 'بغداد - مركز لوجستي',
+      image: '/images/projects/project-4.png',
+      category: 'تركيب متطور'
+    },
+    {
+      id: 5,
+      title: 'تطوير رؤوس الموازين',
+      location: 'الموصل - معامل أغذية',
+      image: '/images/projects/project-5.png',
+      category: 'تحديث أنظمة'
+    },
+    {
+      id: 6,
+      title: 'ميزان منصة هيدروليكي',
+      location: 'ناحية خورمال - مشاريع زراعية',
+      image: '/images/projects/project-6.png',
+      category: 'حلول مخصصة'
+    },
   ];
 
   return (

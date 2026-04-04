@@ -5,6 +5,7 @@ import StatsSection from '@/components/StatsSection';
 import ServicesSection from '@/components/ServicesSection';
 import ProductsSection from '@/components/ProductsSection';
 import ProjectsSection from '@/components/ProjectsSection';
+import VideoGallery from '@/components/VideoGallery';
 import AboutSection from '@/components/AboutSection';
 import ContactSection from '@/components/ContactSection';
 import Footer from '@/components/Footer';
@@ -16,7 +17,7 @@ import Footer from '@/components/Footer';
  */
 export default function Home() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white text-right" dir="rtl">
       <Header />
       <HeroSection />
       <FeaturesSection />
@@ -26,6 +27,9 @@ export default function Home() {
 
       <ProductsSection />
       <ProjectsSection />
+      
+      <VideoGallery />
+      
       <AboutSection />
 
       <ContactSection />

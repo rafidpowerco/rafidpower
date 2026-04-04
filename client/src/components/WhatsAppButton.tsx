@@ -1,7 +1,7 @@
 import { MessageCircle } from 'lucide-react';
 
 export default function WhatsAppButton() {
-  const phoneNumber = '+9647701659994'; // Updated phone number from footer
+  const phoneNumber = '+9647725549994'; // Primary AsiaCell Number
   const message = 'مرحباً شركة الرافدين، أود الاستفسار عن...';
   const whatsappUrl = `https://wa.me/${phoneNumber.replace('+', '')}?text=${encodeURIComponent(message)}`;
 
