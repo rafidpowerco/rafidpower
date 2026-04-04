@@ -38,13 +38,13 @@ docker compose up --build
 
 ### قائمة تحقق سريعة (يدوي)
 
-| # | الخطوة | مكان التنفيذ |
-|---|--------|----------------|
-| 1 | إنشاء خدمة من المستودع | Render |
-| 2 | التأكد أن الحالة **Live** والرابط `*.onrender.com` يفتح | متصفح |
-| 3 | إضافة الدومين `rafidpower.xyz` | Render → Custom Domains |
-| 4 | نسخ سجلات DNS كما هي | إلى Spaceship → DNS |
-| 5 | فتح `https://rafidpower.xyz` بعد الانتشار | متصفح |
+| #   | الخطوة                                                  | مكان التنفيذ            |
+| --- | ------------------------------------------------------- | ----------------------- |
+| 1   | إنشاء خدمة من المستودع                                  | Render                  |
+| 2   | التأكد أن الحالة **Live** والرابط `*.onrender.com` يفتح | متصفح                   |
+| 3   | إضافة الدومين `rafidpower.xyz`                          | Render → Custom Domains |
+| 4   | نسخ سجلات DNS كما هي                                    | إلى Spaceship → DNS     |
+| 5   | فتح `https://rafidpower.xyz` بعد الانتشار               | متصفح                   |
 
 ### ربط الدومين (Spaceship)
 
@@ -57,11 +57,26 @@ docker compose up --build
 - انسخ `.env.example` إلى `.env` للتطوير.
 - لـ **Umami**: عيّن `VITE_ANALYTICS_ENDPOINT` و`VITE_ANALYTICS_WEBSITE_ID` ثم أعد البناء.
 
+## مشروع البوت الذكي (ضمن نفس المستودع)
+
+تطبيق **chinese-ai-bot-self-learning** (واجهة + Express + tRPC + MySQL) موجود كمجلد عادي تحت:
+
+`AI/AAA/chinese-ai-bot-full-advanced/chinese-ai-bot-self-learning`
+
+للتثبيت والتحقق من ذلك المشروع فقط:
+
+```bash
+cd AI/AAA/chinese-ai-bot-full-advanced/chinese-ai-bot-self-learning
+pnpm install
+pnpm run verify
+```
+
+الدليل التفصيلي بالعربية: [`README_AR.md`](AI/AAA/chinese-ai-bot-full-advanced/chinese-ai-bot-self-learning/README_AR.md). يُشغّل GitHub Actions مهمة CI منفصلة لهذا المسار.
+
 ## المستودع والترخيص
 
-- المستودع: https://github.com/rafidpowerco/rafidpower  
+- المستودع: https://github.com/rafidpowerco/rafidpower
 - الترخيص: **MIT** — انظر ملف `LICENSE`.
-
 
 ## إذا تعثّر النشر على Render
 
