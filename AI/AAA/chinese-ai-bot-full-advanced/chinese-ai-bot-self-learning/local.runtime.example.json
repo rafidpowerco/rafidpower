@@ -1,0 +1,6 @@
+{
+  "_comment": "انسخ إلى local.runtime.json واملأ القيم محلياً — الملف الحقيقي مُستبعد من Git",
+  "PUBLIC_APP_URL": "",
+  "TELEGRAM_BOT_TOKEN": "",
+  "DATABASE_URL": ""
+}

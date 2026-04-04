@@ -1,0 +1,53 @@
+# تشغيل التطبيق + MySQL:
+#   docker compose up --build
+# مع Ollama على نفس الشبكة (بعد سحب نموذج داخل الحاوية):
+#   docker compose --profile ollama up --build
+# ثم ضع في .env: LLM_BACKEND=custom و CUSTOM_LLM_BASE_URL=http://ollama:11434/v1
+services:
+  mysql:
+    image: mysql:8.4
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-botdb}
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  ollama:
+    profiles: ["ollama"]
+    image: ollama/ollama:latest
+    restart: unless-stopped
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+
+  app:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      NODE_ENV: production
+      PORT: "3000"
+      DATABASE_URL: ${DATABASE_URL:-mysql://root:root@mysql:3306/botdb}
+      OLLAMA_AUTO_PROBE: "0"
+      # تطبيق drizzle/*.sql تلقائياً عند كل إقلاع (يعطّلها بـ 0 إن رغبت)
+      RUN_MIGRATIONS_ON_START: ${RUN_MIGRATIONS_ON_START:-1}
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+volumes:
+  mysql_data:
+  ollama_data:

@@ -46,6 +46,7 @@ pids
 *.pid
 *.seed
 *.pid.lock
+*.bak
 
 # Coverage directory used by tools like istanbul
 coverage/
@@ -133,10 +134,9 @@ serviceAccount*.json
 .manus-logs/
 .envrc
 .direnv/
+# إعدادات محلية غالباً فيها كلمات مرور
 docker-compose.override.yml
 
+# إعدادات تجريبية محلية (عناوين تليجرام، دومين، إلخ) — لا تُرفع
 local.runtime.json
 runtime.local.json
-
-# Nested repo history preserved locally after vendoring chinese-ai-bot-self-learning into monorepo
-AI/AAA/chinese-ai-bot-full-advanced/chinese-ai-bot-self-learning/.git_nested_repo_backup/
