@@ -29,3 +29,26 @@ jobs:
         run: |
           pnpm install --frozen-lockfile
           pnpm run verify
+
+  chinese-ai-bot-self-learning:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: AI/AAA/chinese-ai-bot-full-advanced/chinese-ai-bot-self-learning
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.4.1
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: ".nvmrc"
+          cache: pnpm
+          cache-dependency-path: AI/AAA/chinese-ai-bot-full-advanced/chinese-ai-bot-self-learning/pnpm-lock.yaml
+
+      - name: Install and verify
+        run: |
+          pnpm install --frozen-lockfile
+          pnpm run verify

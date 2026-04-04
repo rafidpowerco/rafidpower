@@ -25,6 +25,8 @@ build/
 .DS_Store
 .DS_Store?
 ._*
+__MACOSX/
+**/__MACOSX/
 .Spotlight-V100
 .Trashes
 ehthumbs.db
@@ -110,3 +112,28 @@ temp/
 
 # Manus version file (auto-generated, not part of source)
 client/public/__manus__/version.json
+
+# --- لا تُرفع إلى GitHub: أسرار، مفاتيح، سجلات قد تحتوي جلسات ---
+.env.*
+!.env.example
+*.pem
+*.p12
+*.pfx
+*.key
+id_rsa
+id_rsa.pub
+id_ed25519
+id_ed25519.pub
+*.secret
+secrets/
+**/secrets/
+credentials.json
+*-credentials.json
+serviceAccount*.json
+.manus-logs/
+.envrc
+.direnv/
+docker-compose.override.yml
+
+local.runtime.json
+runtime.local.json

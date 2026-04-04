@@ -4,39 +4,39 @@ import { Play } from 'lucide-react';
 const videos = [
   {
     id: 1,
-    title: 'موازين الشاحنات الإلكترونية - دقة وجودة',
-    url: 'https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2Fwatch%2F%3Fv%3D376483162791653&show_text=false&width=560&t=0',
-    description: 'استعراض لعمليات التوزين الدقيقة لشاحنات النقل الثقيل'
+    title: 'تصنيع هياكل الموازين الجسرية',
+    url: 'https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Frafid.scale%2Fvideos%2F949154934237996&show_text=false&width=560&t=0',
+    description: 'نظرة من داخل مصنعنا على مراحل تصنيع وتجهيز هياكل الموازين الجسرية الفولاذية.'
   },
   {
     id: 2,
-    title: 'تصنيع وصيانة الموازين الجسرية',
-    url: 'https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2Fwatch%2F%3Fv%3D10153231339946729&show_text=false&width=560&t=0',
-    description: 'خطوات التصنيع في معاملنا بأحدث التقنيات العالمية'
+    title: 'ضمان الجودة والمتانة',
+    url: 'https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Frafid.scale%2Fvideos%2F1925941884796056&show_text=false&width=560&t=0',
+    description: 'نركز على أدق التفاصيل لضمان عمل الميزان بكفاءة عالية لمدة تزيد عن 10 سنوات.'
   },
   {
     id: 3,
-    title: 'حلول ذكية للمصانع والمنشآت',
-    url: 'https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2Fwatch%2F%3Fv%3D337678129994672&show_text=false&width=560&t=0',
-    description: 'تكامل أنظمة التوزين مع البرمجيات المحاسبية والرقابية'
+    title: 'خدمات المعايرة والتصليح',
+    url: 'https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Frafid.scale%2Fvideos%2F1658819828578717&show_text=false&width=560&t=0',
+    description: 'فريقنا الفني متخصص في معايرة وصيانة جميع أنواع الموازين الجسرية والإلكترونية.'
   },
   {
     id: 4,
-    title: 'تركيب ميزان 80 طن - مشروع جديد',
-    url: 'https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2Fwatch%2F%3Fv%3D10154091339946729&show_text=false&width=560&t=0',
-    description: 'توثيق عملية التركيب الكاملة لأحد مشاريعنا في البصرة'
+    title: 'الرافدين للطاقة والموازين',
+    url: 'https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Frafid.scale%2Fvideos%2F1195594075289144&show_text=false&width=560&t=0',
+    description: 'فيديو ترويجي يستعرض تكامل حلول الطاقة والموازين الصناعية التي نقدمها.'
   },
   {
     id: 5,
-    title: 'معايرة الموازين بأوزان قياسية',
-    url: 'https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2Fwatch%2F%3Fv%3D10153281339946729&show_text=false&width=560&t=0',
-    description: 'ضمان دقة القراءة بنسبة 100% باستخدام أوزان معايرة معتمدة'
+    title: 'استعراض المنتجات والخدمات',
+    url: 'https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Frafid.scale%2Fvideos%2F894070559859703&show_text=false&width=560&t=0',
+    description: 'جولة سريعة على أهم الموازين الجسرية والأنظمة الإلكترونية التي نقوم بتجهيزها.'
   },
   {
     id: 6,
-    title: 'أنظمة التوزين الأوتوماتيكية',
-    url: 'https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2Fwatch%2F%3Fv%3D10153232339946729&show_text=false&width=560&t=0',
-    description: 'توفير الوقت والجهد من خلال أنظمة التوزين الذكية'
+    title: 'دقة الوزن مع الرافدين',
+    url: 'https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Frafid.scale%2Fvideos%2F739656488525943&show_text=false&width=560&t=0',
+    description: 'لماذا يختار العملاء الرافدين؟ لأن الدقة والموثوقية هي أساس عملنا منذ 1988.'
   }
 ];
 
