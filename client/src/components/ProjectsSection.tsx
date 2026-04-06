@@ -1,53 +1,56 @@
 import { useState } from 'react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function ProjectsSection() {
+  const { t } = useLanguage();
+  
   const projects = [
     {
       id: 1,
-      title: 'ميزان جسري 100 طن',
-      location: 'أربيل - مجمع صناعي',
+      title: t('proj1.title'),
+      location: t('proj1.loc'),
       image: 'https://images.unsplash.com/photo-1506806732259-39c2d0268443?auto=format&fit=crop&q=80&w=800',
-      category: 'تركيب جديد',
+      category: t('proj1.cat'),
       delayClass: ''
     },
     {
       id: 2,
-      title: 'نظام أوزان مخزنية',
-      location: 'السليمانية - مستودعات',
+      title: t('proj2.title'),
+      location: t('proj2.loc'),
       image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800',
-      category: 'أتمتة',
+      category: t('proj2.cat'),
       delayClass: 'delay-[150ms]'
     },
     {
       id: 3,
-      title: 'صيانة ومعايرة دورية',
-      location: 'دهوك - موقع نفطي',
+      title: t('proj3.title'),
+      location: t('proj3.loc'),
       image: 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&q=80&w=800',
-      category: 'صيانة',
+      category: t('proj3.cat'),
       delayClass: 'delay-[300ms]'
     },
     {
       id: 4,
-      title: 'ميزان شاحنات ذكي',
-      location: 'بغداد - مركز لوجستي',
+      title: t('proj4.title'),
+      location: t('proj4.loc'),
       image: 'https://images.unsplash.com/photo-1542626991-cbc4e32524cc?auto=format&fit=crop&q=80&w=800',
-      category: 'تركيب متطور',
+      category: t('proj4.cat'),
       delayClass: 'delay-[450ms]'
     },
     {
       id: 5,
-      title: 'تطوير رؤوس الموازين',
-      location: 'الموصل - معامل أغذية',
+      title: t('proj5.title'),
+      location: t('proj5.loc'),
       image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800',
-      category: 'تحديث أنظمة',
+      category: t('proj5.cat'),
       delayClass: 'delay-[600ms]'
     },
     {
       id: 6,
-      title: 'ميزان منصة هيدروليكي',
-      location: 'ناحية خورمال - مشاريع زراعية',
+      title: t('proj6.title'),
+      location: t('proj6.loc'),
       image: 'https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?auto=format&fit=crop&q=80&w=800',
-      category: 'حلول مخصصة',
+      category: t('proj6.cat'),
       delayClass: 'delay-[750ms]'
     },
   ];
@@ -57,12 +60,12 @@ export default function ProjectsSection() {
       <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
           <div className="animate-fade-in">
-            <span className="text-[#e63946] font-bold tracking-widest uppercase mb-2 block">إنجازاتنا</span>
-            <h2 className="text-4xl md:text-5xl font-black text-[#1a3a52]">مشاريع <span className="text-[#e63946]">تم تنفيذها</span></h2>
+            <span className="text-[#e63946] font-bold tracking-widest uppercase mb-2 block">{t('projects.label')}</span>
+            <h2 className="text-4xl md:text-5xl font-black text-[#1a3a52]">{t('projects.title1')} <span className="text-[#e63946]">{t('projects.title2')}</span></h2>
             <div className="w-20 h-1.5 bg-[#e63946] mt-4"></div>
           </div>
           <p className="text-gray-500 max-w-md text-lg leading-relaxed animate-fade-in delay-200">
-            فخورون بالعمل مع كبرى الشركات في العراق لتوفير حلول وزن دقيقة وموثوقة.
+            {t('projects.desc')}
           </p>
         </div>
 

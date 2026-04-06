@@ -7,7 +7,7 @@ export default function SovereignAgiWidget() {
   const { t, isRTL } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<{role: 'user'|'agi', text: string}[]>([
-    { role: 'agi', text: isRTL ? 'مرحباً! أنا ZIND (زند) — الذكاء الاصطناعي السيادي لشركة الرافدين. أراقب المنظومة 24/7. كيف يمكنني مساعدتك اليوم؟' : 'Hello! I am ZIND — The Sovereign AI of Al-Rafidain. I monitor the system 24/7. How can I assist you today?' }
+    { role: 'agi', text: isRTL ? 'مرحباً! أنا رافد (Rafid) — الذكاء الاصطناعي السيادي لشركة الرافدين. أراقب المنظومة 24/7. كيف يمكنني مساعدتك اليوم؟' : 'Hello! I am Rafid — The Sovereign AI of Al-Rafidain. I monitor the system 24/7. How can I assist you today?' }
   ]);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
@@ -95,7 +95,7 @@ export default function SovereignAgiWidget() {
             <div className="absolute inset-0 bg-[#F5060B] rounded-full animate-ping opacity-20"></div>
             <Cpu size={32} className="relative z-10" />
             <span className="absolute -top-10 left-1/2 -translate-x-1/2 whitespace-nowrap bg-black/80 backdrop-blur-md text-white text-xs px-3 py-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
-              {isRTL ? 'تحدث مع الذكاء الاصطناعي' : 'Chat with AGI'}
+              {isRTL ? 'تحدث مع رافد للذكاء الاصطناعي' : 'Chat with Rafid AI'}
             </span>
           </motion.button>
         )}
@@ -122,7 +122,7 @@ export default function SovereignAgiWidget() {
                   <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-[#1a3a52] rounded-full animate-pulse"></div>
                 </div>
                 <div>
-                  <h3 className="font-bold text-sm tracking-[0.15em] uppercase">ZIND · زند</h3>
+                  <h3 className="font-bold text-sm tracking-[0.15em] uppercase">RAFID · رافد</h3>
                   <p className="text-[10px] text-gray-300 font-mono tracking-widest uppercase flex items-center gap-1">
                     <span className="w-1.5 h-1.5 bg-green-400 rounded-full animate-ping"></span>
                     Sovereign AI · Online
@@ -157,7 +157,7 @@ export default function SovereignAgiWidget() {
                     {msg.role === 'agi' && (
                       <div className="flex items-center gap-1.5 mb-1 opacity-50">
                         <Cpu size={12} />
-                        <span className="text-[10px] font-mono tracking-wider uppercase">ZIND</span>
+                        <span className="text-[10px] font-mono tracking-wider uppercase">RAFID</span>
                       </div>
                     )}
                     {msg.text}
@@ -183,7 +183,7 @@ export default function SovereignAgiWidget() {
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-                  placeholder={isRTL ? "اسأل ZIND..." : "Ask ZIND..."}
+                  placeholder={isRTL ? "اسأل رافد..." : "Ask Rafid..."}
                   className="flex-1 bg-transparent border-none outline-none px-3 text-sm text-gray-700 placeholder-gray-400"
                 />
                 <button 
@@ -201,7 +201,7 @@ export default function SovereignAgiWidget() {
             {/* Minimal footer */}
             <div className="bg-gray-100 py-1.5 text-center border-t border-gray-200">
               <span className="text-[9px] text-gray-400 uppercase font-mono tracking-widest">
-                ZIND · Powered by Al-Rafidain Neural Engine
+                RAFID · Powered by Al-Rafidain Neural Engine
               </span>
             </div>
           </motion.div>

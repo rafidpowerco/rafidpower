@@ -45,15 +45,16 @@ export default function VideoGallery() {
     <section id="videos" className="py-24 bg-gray-50 overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="flex flex-col items-center text-center mb-16">
-          <div className="inline-block px-4 py-1 border border-[#1a3a52]/20 bg-[#1a3a52]/5 rounded-full text-[#1a3a52] text-sm font-semibold uppercase tracking-wider mb-4">
-            الرافدين في الميدان
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 border border-[#1877F2]/30 bg-[#1877F2]/10 rounded-full text-[#1877F2] text-sm font-bold uppercase tracking-wider mb-4 shadow-[0_0_15px_rgba(24,119,242,0.2)]">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+            أكثر من 10,000 متابع يثقون بنا
           </div>
           <h2 className="text-4xl md:text-5xl font-extrabold text-[#1a3a52] mb-6 tracking-tight">
-            معرض <span className="text-[#e63946]">الفيديوهات</span>
+            معرض <span className="text-[#1877F2]">الفيديوهات</span>
           </h2>
-          <div className="w-24 h-1.5 bg-[#e63946] rounded-full mb-8"></div>
+          <div className="w-24 h-1.5 bg-gradient-to-r from-[#1877F2] to-[#0A0E17] rounded-full mb-8"></div>
           <p className="text-xl text-gray-600 max-w-2xl leading-relaxed">
-            شاهد خبرتنا في العمل من خلال فيديوهات توضيحية لعمليات التركيب، المعايرة، والصيانة لمشاريعنا المختلفة
+            استكشف أحدث مشاريعنا مباشرة من صفحتنا على فيسبوك، شاهد خبرتنا في عمليات التركيب والمعايرة
           </p>
         </div>
 

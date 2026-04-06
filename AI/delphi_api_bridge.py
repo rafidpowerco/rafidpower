@@ -29,10 +29,21 @@ async def analyze_and_certify_weight(data: WeightData):
     
     # 1. إرسال البيانات (analog_sensor_raw_data) لمحرك الذكاء الاصطناعي (PINN) للتدقيق
     # إذا كان هناك تذبذب غير منطقي، سيقوم بتحديده.
-    is_legit = True # نفترض هنا اجتياز الاختبار
     
+    is_legit = True
+    fraud_confidence = 0.0
+    
+    # Check for anomaly (mocking the inference of PINN without holding up the thread heavily)
+    if data.analog_sensor_raw_data and len(data.analog_sensor_raw_data) > 0:
+        import numpy as np
+        # Simple heuristic or simulated inference: if variance is unnaturally high or exact zeroes
+        variance = np.var(data.analog_sensor_raw_data)
+        if variance > 50.0:  # Arbitrary threshold for anomaly
+            is_legit = False
+            fraud_confidence = 0.95
+            
     if not is_legit:
-        raise HTTPException(status_code=403, detail="Fraud Detected by Core Nucleus")
+        raise HTTPException(status_code=403, detail=f"Fraud Detected by Core Nucleus. Confidence: {fraud_confidence}")
 
     # 2. إنشاء بصمة التشفير الخاصة بـ QR Code (Cryptographic Binding)
     # لا يمكن لأي عامل أو شخص تزوير الفاتورة لأن التشفير يجمع رقم التذكرة والوزن معاً 

@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
-import { Truck, Users, Award, Briefcase } from 'lucide-react';
+import { Truck, Users, Award, Briefcase, Facebook } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 interface StatItemProps {
@@ -57,9 +57,9 @@ const StatItem = ({ icon: Icon, value, label, suffix = '' }: StatItemProps) => {
         <Icon size={32} className="text-white" />
       </div>
       <div className="text-4xl md:text-5xl font-black mb-2 text-white tabular-nums">
-        {count}{suffix}+
+        {count.toLocaleString()}{suffix}+
       </div>
-      <div className="text-gray-400 font-bold uppercase tracking-wider text-sm">
+      <div className="text-gray-400 font-bold uppercase tracking-wider text-sm text-center">
         {label}
       </div>
     </div>
@@ -74,11 +74,12 @@ export default function StatsSection() {
       <div className="absolute top-1/2 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#e63946]/20 to-transparent"></div>
       
       <div className="container mx-auto px-4 relative z-10">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
           <StatItem icon={Briefcase} value={35} label={t('stat.1')} suffix="" />
           <StatItem icon={Truck} value={1200} label={t('stat.2')} suffix="" />
           <StatItem icon={Users} value={500} label={t('stat.3')} suffix="" />
           <StatItem icon={Award} value={15} label={t('stat.4')} suffix="" />
+          <StatItem icon={Facebook} value={10340} label={t('stat.5')} suffix="" />
         </div>
       </div>
     </section>

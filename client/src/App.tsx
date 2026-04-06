@@ -7,6 +7,7 @@ import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 import WhatsAppButton from "./components/WhatsAppButton";
+import FacebookButton from "./components/FacebookButton";
 import SovereignAgiWidget from "./components/SovereignAgiWidget";
 import { LanguageProvider } from "./contexts/LanguageContext";
 import SovereignDashboard from "./pages/SovereignDashboard";
