@@ -1,0 +1,102 @@
+
+[2026-04-05 02:05:48] تحديث في test_bug.py
+الحكمة المستنبطة:
+[نص مولّد افتراضياً للعملية، المحرك المحلي غير نشط: <urlopen error [WinError 10061] No connection could be made because the target machine actively refused it>]
+بناءً على المعطيات المعمارية المطلوبة، سيتم توزيع الأحمال البرمجية إلى هيكل خدمات مصغرة (Microservices) لضمان الأداء.
+--------------------------------------------------
+
+[2026-04-05 02:06:07] تحديث في agi_learned_insights.txt
+الحكمة المستنبطة:
+[نص مولّد افتراضياً للعملية، المحرك المحلي غير نشط: <urlopen error [WinError 10061] No connection could be made because the target machine actively refused it>]
+بناءً على المعطيات المعمارية المطلوبة، سيتم توزيع الأحمال البرمجية إلى هيكل خدمات مصغرة (Microservices) لضمان الأداء.
+--------------------------------------------------
+
+[2026-04-05 02:06:33] تحديث في agi_learned_insights.txt
+الحكمة المستنبطة:
+[نص مولّد افتراضياً للعملية، المحرك المحلي غير نشط: <urlopen error [WinError 10061] No connection could be made because the target machine actively refused it>]
+بناءً على المعطيات المعمارية المطلوبة، سيتم توزيع الأحمال البرمجية إلى هيكل خدمات مصغرة (Microservices) لضمان الأداء.
+--------------------------------------------------
+
+[2026-04-05 02:07:01] تحديث في agi_learned_insights.txt
+الحكمة المستنبطة:
+[نص مولّد افتراضياً للعملية، المحرك المحلي غير نشط: <urlopen error [WinError 10061] No connection could be made because the target machine actively refused it>]
+بناءً على المعطيات المعمارية المطلوبة، سيتم توزيع الأحمال البرمجية إلى هيكل خدمات مصغرة (Microservices) لضمان الأداء.
+--------------------------------------------------
+
+[2026-04-05 02:07:28] تحديث في agi_learned_insights.txt
+الحكمة المستنبطة:
+[نص مولّد افتراضياً للعملية، المحرك المحلي غير نشط: <urlopen error [WinError 10061] No connection could be made because the target machine actively refused it>]
+بناءً على المعطيات المعمارية المطلوبة، سيتم توزيع الأحمال البرمجية إلى هيكل خدمات مصغرة (Microservices) لضمان الأداء.
+--------------------------------------------------
+
+[2026-04-05 02:07:55] تحديث في agi_learned_insights.txt
+الحكمة المستنبطة:
+[نص مولّد افتراضياً للعملية، المحرك المحلي غير نشط: <urlopen error [WinError 10061] No connection could be made because the target machine actively refused it>]
+بناءً على المعطيات المعمارية المطلوبة، سيتم توزيع الأحمال البرمجية إلى هيكل خدمات مصغرة (Microservices) لضمان الأداء.
+--------------------------------------------------
+
+[2026-04-05 02:08:12] تحديث في test_bug.py
+الحكمة المستنبطة:
+[نص مولّد افتراضياً للعملية، المحرك المحلي غير نشط: <urlopen error [WinError 10061] No connection could be made because the target machine actively refused it>]
+بناءً على المعطيات المعمارية المطلوبة، سيتم توزيع الأحمال البرمجية إلى هيكل خدمات مصغرة (Microservices) لضمان الأداء.
+--------------------------------------------------
+
+[2026-04-05 02:08:30] تحديث في agi_learned_insights.txt
+الحكمة المستنبطة:
+[نص مولّد افتراضياً للعملية، المحرك المحلي غير نشط: <urlopen error [WinError 10061] No connection could be made because the target machine actively refused it>]
+بناءً على المعطيات المعمارية المطلوبة، سيتم توزيع الأحمال البرمجية إلى هيكل خدمات مصغرة (Microservices) لضمان الأداء.
+--------------------------------------------------
+
+[2026-04-05 02:08:57] تحديث في agi_learned_insights.txt
+الحكمة المستنبطة:
+[نص مولّد افتراضياً للعملية، المحرك المحلي غير نشط: <urlopen error [WinError 10061] No connection could be made because the target machine actively refused it>]
+بناءً على المعطيات المعمارية المطلوبة، سيتم توزيع الأحمال البرمجية إلى هيكل خدمات مصغرة (Microservices) لضمان الأداء.
+--------------------------------------------------
+
+[2026-04-05 02:09:25] تحديث في agi_learned_insights.txt
+الحكمة المستنبطة:
+[نص مولّد افتراضياً للعملية، المحرك المحلي غير نشط: <urlopen error [WinError 10061] No connection could be made because the target machine actively refused it>]
+بناءً على المعطيات المعمارية المطلوبة، سيتم توزيع الأحمال البرمجية إلى هيكل خدمات مصغرة (Microservices) لضمان الأداء.
+--------------------------------------------------
+
+[2026-04-05 02:09:52] تحديث في agi_learned_insights.txt
+الحكمة المستنبطة:
+[نص مولّد افتراضياً للعملية، المحرك المحلي غير نشط: <urlopen error [WinError 10061] No connection could be made because the target machine actively refused it>]
+بناءً على المعطيات المعمارية المطلوبة، سيتم توزيع الأحمال البرمجية إلى هيكل خدمات مصغرة (Microservices) لضمان الأداء.
+--------------------------------------------------
+
+[2026-04-05 02:10:19] تحديث في agi_learned_insights.txt
+الحكمة المستنبطة:
+[نص مولّد افتراضياً للعملية، المحرك المحلي غير نشط: <urlopen error [WinError 10061] No connection could be made because the target machine actively refused it>]
+بناءً على المعطيات المعمارية المطلوبة، سيتم توزيع الأحمال البرمجية إلى هيكل خدمات مصغرة (Microservices) لضمان الأداء.
+--------------------------------------------------
+
+[2026-04-05 02:10:46] تحديث في agi_learned_insights.txt
+الحكمة المستنبطة:
+[نص مولّد افتراضياً للعملية، المحرك المحلي غير نشط: <urlopen error [WinError 10061] No connection could be made because the target machine actively refused it>]
+بناءً على المعطيات المعمارية المطلوبة، سيتم توزيع الأحمال البرمجية إلى هيكل خدمات مصغرة (Microservices) لضمان الأداء.
+--------------------------------------------------
+
+[2026-04-05 02:11:13] تحديث في agi_learned_insights.txt
+الحكمة المستنبطة:
+[نص مولّد افتراضياً للعملية، المحرك المحلي غير نشط: <urlopen error [WinError 10061] No connection could be made because the target machine actively refused it>]
+بناءً على المعطيات المعمارية المطلوبة، سيتم توزيع الأحمال البرمجية إلى هيكل خدمات مصغرة (Microservices) لضمان الأداء.
+--------------------------------------------------
+
+[2026-04-05 02:11:41] تحديث في agi_learned_insights.txt
+الحكمة المستنبطة:
+[نص مولّد افتراضياً للعملية، المحرك المحلي غير نشط: <urlopen error [WinError 10061] No connection could be made because the target machine actively refused it>]
+بناءً على المعطيات المعمارية المطلوبة، سيتم توزيع الأحمال البرمجية إلى هيكل خدمات مصغرة (Microservices) لضمان الأداء.
+--------------------------------------------------
+
+[2026-04-05 02:12:09] تحديث في agi_learned_insights.txt
+الحكمة المستنبطة:
+[نص مولّد افتراضياً للعملية، المحرك المحلي غير نشط: <urlopen error [WinError 10061] No connection could be made because the target machine actively refused it>]
+بناءً على المعطيات المعمارية المطلوبة، سيتم توزيع الأحمال البرمجية إلى هيكل خدمات مصغرة (Microservices) لضمان الأداء.
+--------------------------------------------------
+
+[2026-04-05 02:12:36] تحديث في agi_learned_insights.txt
+الحكمة المستنبطة:
+[نص مولّد افتراضياً للعملية، المحرك المحلي غير نشط: <urlopen error [WinError 10061] No connection could be made because the target machine actively refused it>]
+بناءً على المعطيات المعمارية المطلوبة، سيتم توزيع الأحمال البرمجية إلى هيكل خدمات مصغرة (Microservices) لضمان الأداء.
+--------------------------------------------------

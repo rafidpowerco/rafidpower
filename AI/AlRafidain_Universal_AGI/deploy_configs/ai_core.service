@@ -1,0 +1,23 @@
+[Unit]
+Description=Al-Rafidain Universal AGI - Core Engine (FastAPI/Uvicorn)
+After=network.target
+
+[Service]
+# It is recommended to use a dedicated unprivileged user like 'ubuntu' or 'deploy'
+User=root
+Group=www-data
+WorkingDirectory=/opt/AlRafidain_Universal_AGI
+
+# Path to the virtual environment's Python executable
+Environment="PATH=/opt/AlRafidain_Universal_AGI/venv/bin"
+
+# Production startup uses Uvicorn to serve both the public website and the background AGI loops simultaneously
+ExecStart=/opt/AlRafidain_Universal_AGI/venv/bin/uvicorn run_autonomous_brain:app --host 127.0.0.1 --port 8000 --workers 4
+
+# Restart policies: Automatic restart on crash to ensure 24/7 availability
+Restart=always
+# Wait 3 seconds before restarting
+RestartSec=3
+
+[Install]
+WantedBy=multi-user.target

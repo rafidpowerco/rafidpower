@@ -107,9 +107,14 @@ export default function Footer() {
               </li>
               <li className="flex gap-2">
                 <Mail size={18} className="text-[#e63946] flex-shrink-0 mt-1" />
-                <a href="mailto:info@rafidpower.xyz" className="text-gray-300 hover:text-[#e63946] transition-colors">
-                  info@rafidpower.xyz
-                </a>
+                <div className="flex flex-col">
+                  <a href="mailto:rafidcompany@gmail.com" className="text-gray-300 hover:text-[#e63946] transition-colors">
+                    rafidcompany@gmail.com
+                  </a>
+                  <a href="mailto:Rfidcompany@yahoo.com" className="text-gray-300 hover:text-[#e63946] transition-colors">
+                    Rfidcompany@yahoo.com
+                  </a>
+                </div>
               </li>
               <li className="flex gap-2">
                 <Globe size={18} className="text-[#e63946] flex-shrink-0 mt-1" />

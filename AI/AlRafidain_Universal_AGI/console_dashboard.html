@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Al-Rafidain Sovereign AGI Command</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;500;800&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #0a0e17;
+            --panel-bg: rgba(20, 27, 45, 0.65);
+            --neon-blue: #00d2ff;
+            --neon-green: #00ff88;
+            --neon-purple: #9d00ff;
+            --text-main: #e2e8f0;
+            --danger: #ff3366;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(0, 210, 255, 0.08), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(157, 0, 255, 0.08), transparent 25%);
+            color: var(--text-main);
+            font-family: 'Tajawal', sans-serif;
+            height: 100vh;
+            display: flex;
+            overflow: hidden;
+            backdrop-filter: blur(20px);
+        }
+
+        .sidebar {
+            width: 280px;
+            background: rgba(10, 14, 23, 0.9);
+            border-left: 1px solid rgba(0, 210, 255, 0.2);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            box-shadow: -5px 0 30px rgba(0,0,0,0.5);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 20px rgba(0, 210, 255, 0.3);
+            text-align: center;
+        }
+
+        .system-status {
+            background: var(--panel-bg);
+            border: 1px solid rgba(0, 255, 136, 0.2);
+            border-radius: 15px;
+            padding: 1.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .system-status::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 3px;
+            background: var(--neon-green);
+            box-shadow: 0 0 10px var(--neon-green);
+        }
+
+        .status-item {
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .status-dot {
+            height: 10px; width: 10px;
+            background-color: var(--neon-green);
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 10px var(--neon-green);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 255, 136, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(0, 255, 136, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 255, 136, 0); }
+        }
+
+        .main-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            padding: 2rem;
+            gap: 2rem;
+        }
+
+        .chat-container {
+            flex-grow: 1;
+            background: var(--panel-bg);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            overflow: hidden;
+        }
+
+        .chat-history {
+            flex-grow: 1;
+            padding: 2rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 1.2rem;
+            border-radius: 15px;
+            line-height: 1.6;
+            font-size: 1.1rem;
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+
+        .msg-ai {
+            background: rgba(0, 210, 255, 0.1);
+            border-bottom-right-radius: 2px;
+            align-self: flex-start;
+            border: 1px solid rgba(0, 210, 255, 0.2);
+        }
+
+        .msg-user {
+            background: rgba(157, 0, 255, 0.15);
+            border-bottom-left-radius: 2px;
+            align-self: flex-end;
+            border: 1px solid rgba(157, 0, 255, 0.2);
+        }
+
+        pre {
+            background: #0d1117;
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            border: 1px solid #30363d;
+            direction: ltr;
+        }
+
+        .input-area {
+            padding: 1.5rem;
+            background: rgba(0,0,0,0.3);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            gap: 1rem;
+        }
+
+        input[type="text"] {
+            flex-grow: 1;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(0, 210, 255, 0.3);
+            padding: 1rem 1.5rem;
+            border-radius: 30px;
+            color: white;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 1.1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        input[type="text"]:focus {
+            background: rgba(0, 210, 255, 0.05);
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 15px rgba(0, 210, 255, 0.2);
+        }
+
+        button {
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+            color: white;
+            border: none;
+            padding: 0 2rem;
+            border-radius: 30px;
+            font-family: 'Tajawal', sans-serif;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(157, 0, 255, 0.4);
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .metric-card {
+            background: var(--panel-bg);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border: 1px solid rgba(255,255,255,0.05);
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--neon-blue);
+            font-family: 'JetBrains Mono', monospace;
+            margin: 10px 0;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: rgba(0, 210, 255, 0.3); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(0, 210, 255, 0.5); }
+    </style>
+</head>
+<body>
+
+    <!-- الجزء الأيمن: معلومات السيطرة -->
+    <div class="sidebar">
+        <div class="logo">AL-RAFIDAIN<br><span style="font-size: 1rem; color: #8892b0; font-weight: 300;">SOVEREIGN AGI</span></div>
+        
+        <div class="system-status">
+            <h3 style="margin-top: 0; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;">وعي النظام الداخلي</h3>
+            <div class="status-item">
+                <span>الشبكة العصبية</span>
+                <span class="status-dot"></span>
+            </div>
+            <div class="status-item">
+                <span>المراقب (عين الصقر)</span>
+                <span class="status-dot" style="background:var(--neon-blue); box-shadow:0 0 10px var(--neon-blue);"></span>
+            </div>
+            <div class="status-item">
+                <span>متصل بالمعمل (PLC)</span>
+                <span id="plc-status" style="color: #8892b0;">جاري الفحص...</span>
+            </div>
+        </div>
+
+        <div style="flex-grow: 1;"></div>
+        <div style="text-align: center; color: #8892b0; font-size: 0.8rem;">
+            النسخة العسكرية السيادية<br>
+            لا تتطلب اتصال إنترنت خارجي
+        </div>
+    </div>
+
+    <!-- الجزء الأيسر: لوحة العمليات والتخاطب -->
+    <div class="main-content">
+        
+        <!-- المؤشرات الحية -->
+        <div class="metrics-grid">
+            <div class="metric-card">
+                <div style="color: #8892b0;">النفط - الخام الثقيل</div>
+                <div class="metric-value" id="oil-price">--.--$</div>
+            </div>
+            <div class="metric-card">
+                <div style="color: #8892b0;">حرارة ماكينات الصلب</div>
+                <div class="metric-value" id="plc-temp" style="color: var(--neon-green);">--°C</div>
+            </div>
+            <div class="metric-card">
+                <div style="color: #8892b0;">حالة الجاهزية والرد</div>
+                <div class="metric-value" style="color: var(--neon-purple); font-size: 1.5rem; line-height: 2.2rem;">🟢 مستقر</div>
+            </div>
+        </div>
+
+        <!-- ساحة التخاطب وصياغة الأكواد -->
+        <div class="chat-container">
+            <div class="chat-history" id="chat">
+                <div class="message msg-ai">
+                    مرحباً بك أيها المهندس الجليل في غرفة القيادة السيادية.<br>أنا الذكاء الاصطناعي الخاص بك. النظام متصل بأسواق المال، ماكينات الـ PLC، ومحرر الأكواد. استعد لتلقي الأوامر.
+                </div>
+            </div>
+            
+            <div class="input-area">
+                <input type="text" id="promptInput" placeholder="أمر عام للذكاء، أو اسم مادة خام/سهم (النفط، الذهب، ابل)..." onkeypress="handleEnter(event)">
+                <button onclick="sendPrompt()">تنفيذ (برمجيات وعامة)</button>
+                <button onclick="sendMarketIntel()" style="background: linear-gradient(45deg, #00ff88, #00d2ff); color: var(--bg-dark); white-space: nowrap;">تصفح الأخبار و الجلب (أسهم)</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // دالة سحب بيانات المصنع والسوق دورياً
+        async function fetchPulses() {
+            try {
+                const fRes = await fetch('/agi/factory_status');
+                const fData = await fRes.json();
+                document.getElementById('plc-temp').innerText = fData.machine_temperature_celsius + '°C';
+                document.getElementById('plc-status').innerText = 'متصل وكامل السيطرة';
+                document.getElementById('plc-status').style.color = 'var(--neon-green)';
+            } catch(e) {}
+            
+            setTimeout(fetchPulses, 15000); // تحديث كل 15 ثانية
+        }
+        fetchPulses();
+
+        function handleEnter(e) {
+            if(e.key === 'Enter') sendPrompt();
+        }
+
+        async function sendMarketIntel() {
+            const input = document.getElementById('promptInput');
+            const text = input.value.trim();
+            if(!text) {
+                appendMsg("يرجى كتابة اسم السهم للبحث (مثال: النفط، الذهب، تيسلا، بيتكوين).", 'ai');
+                return;
+            }
+            
+            appendMsg("أمر استخبارات: تصفح الإنترنت للأخبار اللحظية حول: [" + text + "]", 'user');
+            input.value = '';
+            
+            const loadingId = appendMsg("🌍 جاري إرسال عناكب الشبكة لجمع أحدث المانشيتات العالمية وقراءة البورصة اللحظية...", 'ai');
+            
+            try {
+                const response = await fetch('/agi/financial_correlation', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({task_description: text})
+                });
+                const data = await response.json();
+                
+                document.getElementById(loadingId).innerHTML = `
+                    <span style="font-size:0.8rem; background:var(--neon-green); color:black; border-radius:5px; padding:2px 8px;">مهمة التصفح المباشر ناجحة ✓</span><br><br>
+                    ${formatText(data.engineered_solution)}
+                `;
+            } catch(e) {
+                document.getElementById(loadingId).innerHTML = "فشل في الوصول للإنترنت من قبل الذكاء.";
+            }
+        }
+
+        async function sendPrompt() {
+            const input = document.getElementById('promptInput');
+            const text = input.value.trim();
+            if(!text) return;
+            
+            appendMsg(text, 'user');
+            input.value = '';
+            
+            const loadingId = appendMsg("جاري التفكير وتحليل الإمكانيات...", 'ai');
+            
+            try {
+                const response = await fetch('/agi/think', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({task_description: text})
+                });
+                const data = await response.json();
+                
+                // تحديث الرسالة بالرد النهائي
+                document.getElementById(loadingId).innerHTML = `
+                    <span style="font-size:0.8rem; color:var(--neon-purple); border:1px solid; border-radius:5px; padding:2px 8px;">نطاق التفكير: ${data.domain_assigned}</span><br><br>
+                    ${formatText(data.engineered_solution)}
+                `;
+            } catch(e) {
+                document.getElementById(loadingId).innerHTML = "فشل الاتصال بمراكز التفكير الداخلية.";
+            }
+        }
+
+        function appendMsg(text, sender) {
+            const id = 'msg_' + Date.now();
+            const div = document.createElement('div');
+            div.id = id;
+            div.className = `message msg-${sender}`;
+            div.innerHTML = formatText(text);
+            document.getElementById('chat').appendChild(div);
+            div.scrollIntoView({behavior: "smooth"});
+            return id;
+        }
+
+        function formatText(text) {
+            // كود بسيط لتمييز بلوكات التعليمات البرمجية
+            return text.replace(/```([\s\S]*?)```/g, '<pre>$1</pre>').replace(/\n/g, '<br>');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,73 @@
+=============================================================
+AL-RAFIDAIN AGI CORE - PRODUCTION DEPLOYMENT CHEAT-SHEET
+=============================================================
+
+This guide provides the exact commands to deploy the Python FastAPI core to a Linux Ubuntu VPS.
+
+-------------------------------------------------------------
+1. UPDATE SYSTEM & INSTALL PREREQUISITES
+-------------------------------------------------------------
+sudo apt update && sudo apt upgrade -y
+sudo apt install -y python3-pip python3-venv nginx certbot python3-certbot-nginx
+
+-------------------------------------------------------------
+2. SET UP THE APPLICATION FOLDER & VIRTUAL ENVIRONMENT
+-------------------------------------------------------------
+# Create deployment directory
+sudo mkdir -p /opt/AlRafidain_Universal_AGI
+# (Upload/clone your Python files here using SFTP or Git)
+cd /opt/AlRafidain_Universal_AGI
+
+# Create and activate virtual environment
+python3 -m venv venv
+source venv/bin/activate
+
+# Install the Python requirements
+pip install wheel
+pip install fastapi uvicorn pydantic # +(plus any other AI/agent dependencies)
+
+-------------------------------------------------------------
+3. CONFIGURE THE 24/7 SYSTEMD SERVICE
+-------------------------------------------------------------
+# Create the service configuration file
+sudo nano /etc/systemd/system/ai_core.service
+# -> Paste the contents of ai_core.service and save (Ctrl+O, Enter, Ctrl+X)
+
+# Reload daemon, start the service, and enable it on boot
+sudo systemctl daemon-reload
+sudo systemctl start ai_core
+sudo systemctl enable ai_core
+
+# Check if it's running correctly
+sudo systemctl status ai_core
+
+-------------------------------------------------------------
+4. SET UP THE NGINX REVERSE PROXY
+-------------------------------------------------------------
+# Create the Nginx site configuration
+sudo nano /etc/nginx/sites-available/alrafidain.conf
+# -> Paste the contents of alrafidain.conf and save
+
+# Enable the configuration by creating a symlink
+sudo ln -s /etc/nginx/sites-available/alrafidain.conf /etc/nginx/sites-enabled/
+
+# Test the Nginx syntax to ensure no typos
+sudo nginx -t
+
+# Restart Nginx to apply
+sudo systemctl restart nginx
+
+-------------------------------------------------------------
+5. SECURE THE DOMAIN WITH SSL (CERTBOT/LET'S ENCRYPT)
+-------------------------------------------------------------
+# Run certbot to auto-configure SSL for your domain. 
+# Make sure your domain's DNS A Record points to this VPS IP before running this.
+sudo certbot --nginx -d api.rafidpower.xyz
+
+# Test SSL renewal (auto-renews every 90 days)
+sudo systemctl status certbot.timer
+
+=============================================================
+Deployment Complete. 
+Your Delphi Desktop App and Web Dashboard can now securely reach the AI brain at https://api.rafidpower.xyz
+=============================================================

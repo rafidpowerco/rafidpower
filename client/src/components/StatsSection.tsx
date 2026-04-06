@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import { Truck, Users, Award, Briefcase } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 interface StatItemProps {
   icon: React.ElementType;
@@ -66,6 +67,7 @@ const StatItem = ({ icon: Icon, value, label, suffix = '' }: StatItemProps) => {
 };
 
 export default function StatsSection() {
+  const { t } = useLanguage();
   return (
     <section className="py-20 bg-[#12263a] relative overflow-hidden">
       {/* Decorative elements */}
@@ -73,10 +75,10 @@ export default function StatsSection() {
       
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-          <StatItem icon={Briefcase} value={35} label="عاماً من الخبرة" suffix="" />
-          <StatItem icon={Truck} value={1200} label="ميزان تم تركيبه" suffix="" />
-          <StatItem icon={Users} value={500} label="عميل سعيد" suffix="" />
-          <StatItem icon={Award} value={15} label="شهادة جودة" suffix="" />
+          <StatItem icon={Briefcase} value={35} label={t('stat.1')} suffix="" />
+          <StatItem icon={Truck} value={1200} label={t('stat.2')} suffix="" />
+          <StatItem icon={Users} value={500} label={t('stat.3')} suffix="" />
+          <StatItem icon={Award} value={15} label={t('stat.4')} suffix="" />
         </div>
       </div>
     </section>

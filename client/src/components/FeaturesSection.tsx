@@ -1,36 +1,39 @@
 import { ShieldCheck, Target, Zap, Clock, ThumbsUp, Scale } from 'lucide-react';
+import { useLanguage } from '@/contexts/LanguageContext';
 
 export default function FeaturesSection() {
+  const { t } = useLanguage();
+
   const features = [
     {
       icon: Scale,
-      title: 'دقة متناهية',
-      description: 'نستخدم أحدث تقنيات التحويل الرقمي لضمان أدق نتائج التوزين في السوق.',
+      title: t('feat.1.t'),
+      description: t('feat.1.d'),
     },
     {
       icon: ShieldCheck,
-      title: 'جودة معتمدة',
-      description: 'جميع منتجاتنا تخضع لمعايير الجودة العالمية OIML وتأتي مع ضمان شامل.',
+      title: t('feat.2.t'),
+      description: t('feat.2.d'),
     },
     {
       icon: Target,
-      title: 'خبرة طويلة',
-      description: 'أكثر من 35 عاماً في خدمة القطاع الصناعي العراقي والإقليمي.',
+      title: t('feat.3.t'),
+      description: t('feat.3.d'),
     },
     {
       icon: Clock,
-      title: 'سرعة التنفيذ',
-      description: 'نلتزم بجداول زمنية صارمة في التركيب والصيانة لضمان عدم توقف أعمالكم.',
+      title: t('feat.4.t'),
+      description: t('feat.4.d'),
     },
     {
       icon: Zap,
-      title: 'تقنيات حديثة',
-      description: 'نواكب أحدث الابتكارات في مجال الموازين الجسرية وأنظمة الأتمتة.',
+      title: t('feat.5.t'),
+      description: t('feat.5.d'),
     },
     {
       icon: ThumbsUp,
-      title: 'دعم فني متميز',
-      description: 'فريق فني جاهز للاستجابة السريعة وتوفير قطع الغيار الأصلية دائماً.',
+      title: t('feat.6.t'),
+      description: t('feat.6.d'),
     },
   ];
 
@@ -43,11 +46,11 @@ export default function FeaturesSection() {
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center mb-20 animate-fade-in">
           <h2 className="text-4xl md:text-5xl font-black mb-6 uppercase tracking-tight">
-            لماذا تختار <span className="text-[#e63946]">الرافدين؟</span>
+            {t('features.title1')} <span className="text-[#e63946]">{t('features.title2')}</span>
           </h2>
           <div className="w-24 h-1.5 bg-[#e63946] mx-auto mb-8"></div>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto font-light leading-relaxed">
-            نحن لا نبيع موازين فحسب، بل نقدم حلولاً هندسية متكاملة تضمن دقة أعمالكم واستمراريتها.
+            {t('features.desc')}
           </p>
         </div>
 
