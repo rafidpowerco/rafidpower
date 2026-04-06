@@ -120,9 +120,34 @@
   }
   html {
     font-family: 'Tajawal', sans-serif;
+    scroll-behavior: smooth;
   }
   body {
     @apply bg-background text-foreground;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Breathtaking Selection Highlight */
+  ::selection {
+    background: rgba(230, 57, 70, 0.3); /* Accent color transparent */
+    color: white;
+  }
+
+  /* Futuristic Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #050B14;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #1a3a52;
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #e63946;
   }
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Cairo', sans-serif;

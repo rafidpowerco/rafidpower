@@ -1,9 +1,20 @@
-from fastapi import FastAPI, BackgroundTasks, HTTPException
+# ==============================================================================
+# 👑 AL-RAFIDAIN SOVEREIGN AGI - MASTER API HUB
+# ==============================================================================
+# (C) 2026 Al-Rafidain Power & Scales Company. All Rights Reserved.
+# STRICTLY PROPRIETARY AND CONFIDENTIAL. ANY UNAUTHORIZED USE, REDISTRIBUTION, 
+# OR MODIFICATION IS STRICTLY PROHIBITED.
+# ==============================================================================
+import os
+import logging
 from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
 import asyncio
 import os
 from datetime import datetime
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # استيراد أجزاء العقل والمستشعرات
 from universal_agents import UniversalAgentCore
@@ -11,17 +22,30 @@ from llm_engine import UniversalLLMEngine
 from plugin_market_live import MarketPlugin
 from plugin_plc_master import PLCMasterPlugin
 
+from fastapi.middleware.cors import CORSMiddleware
+
 app = FastAPI(
     title="Al-Rafidain Master AGI Console",
     description="The centralized nervous system serving coding, industrial, and financial intelligence.",
     version="1.0-Sovereign"
 )
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# قراءة رقم الـ IP من ملف الإعدادات للمصانع والبيئات المختلفة
+PLC_IP = os.getenv("PLC_MASTER_IP", "192.168.0.5")
+
 # 1. إطلاق العصبونات والمستشعرات ككائنات حية في الخادم
 llm = UniversalLLMEngine(provider="local_ollama", model="llama3")
 brain = UniversalAgentCore(llm)
 market = MarketPlugin()
-factory_plc = PLCMasterPlugin(plc_ip="192.168.0.5")
+factory_plc = PLCMasterPlugin(plc_ip=PLC_IP)
 
 class PromptPayload(BaseModel):
     task_description: str

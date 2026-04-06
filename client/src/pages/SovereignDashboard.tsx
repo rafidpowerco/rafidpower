@@ -6,6 +6,9 @@ import { motion } from "framer-motion";
 export default function SovereignDashboard() {
   const { isRTL } = useLanguage();
   const [logs, setLogs] = useState<string[]>([]);
+  const [factoryHealth, setFactoryHealth] = useState<string>("STABLE");
+  const [machineTemp, setMachineTemp] = useState<number>(0);
+  const [apiConnected, setApiConnected] = useState<boolean>(false);
 
   useEffect(() => {
     // Generate mock active logs exactly like a real AGI interface
@@ -21,15 +24,35 @@ export default function SovereignDashboard() {
     ];
     
     let currentIndex = 0;
-    const interval = setInterval(() => {
-      setLogs(prev => [...prev, mockLogs[currentIndex]]);
+    const logInterval = setInterval(() => {
+      setLogs(prev => [...prev.slice(-15), mockLogs[currentIndex % mockLogs.length]]);
       currentIndex++;
-      if (currentIndex >= mockLogs.length) {
-        clearInterval(interval);
-      }
-    }, 1500);
+    }, 3000);
 
-    return () => clearInterval(interval);
+    const fetchAgiStatus = async () => {
+      try {
+        const apiUrl = import.meta.env.VITE_AGI_API_URL || "http://localhost:9000";
+        const response = await fetch(`${apiUrl}/agi/factory_status`);
+        if (response.ok) {
+          const data = await response.json();
+          setApiConnected(true);
+          setFactoryHealth(data.health);
+          setMachineTemp(data.machine_temperature_celsius);
+          setLogs(prev => [...prev.slice(-15), `[AGI LINK] Sensor update: Temp ${data.machine_temperature_celsius}°C | Status: ${data.health}`]);
+        }
+      } catch (err) {
+        setApiConnected(false);
+        setLogs(prev => [...prev.slice(-15), "ERROR: AGI Backend offline or encrypted shield block."]);
+      }
+    };
+
+    fetchAgiStatus();
+    const interval = setInterval(fetchAgiStatus, 10000);
+
+    return () => {
+      clearInterval(interval);
+      clearInterval(logInterval);
+    };
   }, []);
 
   return (
@@ -47,8 +70,8 @@ export default function SovereignDashboard() {
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <span className="w-2 h-2 bg-green-500 rounded-full animate-ping"></span>
-          <span className="text-xs uppercase tracking-widest">System Secure</span>
+          <span className={`w-2 h-2 rounded-full animate-ping ${apiConnected ? 'bg-green-500' : 'bg-red-500'}`}></span>
+          <span className="text-xs uppercase tracking-widest">{apiConnected ? 'AGI Uplink Active' : 'System Secure'}</span>
         </div>
       </header>
 
@@ -59,8 +82,8 @@ export default function SovereignDashboard() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div className="border border-green-500/20 bg-green-900/5 p-4 rounded flex flex-col gap-2">
               <Activity size={20} className="text-[#F5060B]" />
-              <span className="text-xs text-gray-400">Processing Load</span>
-              <span className="text-2xl font-bold text-white">12.4%</span>
+              <span className="text-xs text-gray-400">PLC Temp (Real-time)</span>
+              <span className="text-2xl font-bold text-white">{apiConnected ? `${machineTemp.toFixed(1)}°C` : 'N/A'}</span>
             </div>
             <div className="border border-green-500/20 bg-green-900/5 p-4 rounded flex flex-col gap-2">
               <Users size={20} className="text-[#F5060B]" />

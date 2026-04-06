@@ -15,14 +15,23 @@ export default function HeroSection() {
   return (
     <section
       id="home"
-      className="relative w-full h-screen bg-cover bg-center flex items-center justify-center pt-20 overflow-hidden"
-      style={{
-        backgroundImage: 'url(/images/hero.png)',
-        backgroundAttachment: 'fixed',
-      }}
+      className="relative w-full min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-[#0A0E17]"
     >
-      {/* Dynamic Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#1a3a52]/80 via-black/50 to-[#1a3a52]/80"></div>
+      {/* Dynamic Animated Orbs for Premium Background */}
+      <motion.div 
+        animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3], rotate: [0, 90, 0] }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute top-1/4 -right-1/4 w-[600px] h-[600px] bg-[#c99339]/20 rounded-full blur-[120px] pointer-events-none"
+      />
+      <motion.div 
+        animate={{ scale: [1, 1.5, 1], opacity: [0.2, 0.4, 0.2], rotate: [0, -90, 0] }}
+        transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute -bottom-1/4 -left-1/4 w-[800px] h-[800px] bg-[#1a3a52]/40 rounded-full blur-[150px] pointer-events-none"
+      />
+
+      {/* Glassmorphism Pattern Overlay */}
+      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5 pointer-events-none"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0A0E17]/50 to-[#0A0E17]"></div>
 
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 text-center text-white">
@@ -37,12 +46,20 @@ export default function HeroSection() {
           </motion.div>
           
           <motion.h1 
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-            className="text-6xl md:text-8xl font-extrabold leading-tight tracking-tight drop-shadow-2xl"
+            className="text-6xl md:text-8xl font-extrabold leading-tight tracking-tight drop-shadow-2xl text-white"
           >
-            {t('hero.title.1')} <span className="text-transparent bg-clip-text bg-gradient-to-l from-[#e63946] to-[#ff6b6b]">{t('hero.title.2')}</span>
+            {t('hero.title.1')} <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#c99339] via-[#f5d061] to-[#e63946] relative inline-block">
+              {t('hero.title.2')}
+              <motion.span 
+                initial={{ width: "0%" }}
+                animate={{ width: "100%" }}
+                transition={{ duration: 1.2, delay: 1 }}
+                className="absolute -bottom-2 left-0 h-1 bg-gradient-to-r from-[#c99339] to-transparent rounded-full"
+              />
+            </span>
           </motion.h1>
           
           <motion.p 
@@ -73,10 +90,13 @@ export default function HeroSection() {
             <a href="#services">
               <Button
                 size="lg"
-                className="bg-[#e63946] hover:bg-[#d62828] text-white font-bold text-xl px-10 py-8 shadow-xl shadow-[#e63946]/20 hover:shadow-[#e63946]/40 hover:-translate-y-1 transition-all duration-300 w-full sm:w-auto"
+                className="relative overflow-hidden group bg-gradient-to-r from-[#c99339] to-[#b37f2d] text-white font-bold text-xl px-12 py-8 rounded-2xl shadow-[0_0_40px_rgba(201,147,57,0.3)] hover:shadow-[0_0_60px_rgba(201,147,57,0.5)] hover:-translate-y-2 transition-all duration-300 w-full sm:w-auto border border-[#f5d061]/50"
               >
-                {t('hero.explore')}
-                <ArrowRight className={isRTL ? "mr-2 rotate-180" : "ml-2"} size={24} />
+                <span className="relative z-10 flex items-center">
+                  {t('hero.explore')}
+                  <ArrowRight className={isRTL ? "mr-3 rotate-180 transition-transform group-hover:-translate-x-2" : "ml-3 transition-transform group-hover:translate-x-2"} size={26} />
+                </span>
+                <div className="absolute inset-0 h-full w-full bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] pointer-events-none" />
               </Button>
             </a>
             <QuoteDialog 

@@ -14,12 +14,15 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {/* Company Info */}
           <div>
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 bg-[#e63946] rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold">RF</span>
-              </div>
-              <h3 className="text-lg font-bold">الرافدين</h3>
+            <div className="flex items-center gap-4 mb-5">
+              <img
+                src="/logo.png"
+                alt="Rafid Power Company - مكتب الرافدين للموازين"
+                className="h-16 w-auto object-contain bg-white rounded-xl p-1 shadow-lg"
+              />
             </div>
+            <p className="text-white font-bold text-lg leading-tight mb-1">Rafid Power Company</p>
+            <p className="text-[#e63946] text-sm font-semibold mb-3">مكتب الرافدين للموازين</p>
             <p className="text-gray-300 text-sm leading-relaxed">
               متخصصون في تصنيع وصيانة الموازين الجسرية والمعدات الصناعية الدقيقة منذ عام 1988.
             </p>
@@ -155,10 +158,12 @@ export default function Footer() {
         {/* Divider */}
         <div className="border-t border-gray-700 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            {/* Copyright */}
-            <p className="text-gray-400 text-sm">
-              جميع الحقوق محفوظة &copy; {currentYear} الرافدين للموازين. All rights reserved.
-            </p>
+            <div className="flex flex-col md:flex-row items-center gap-3">
+              <img src="/logo.png" alt="Rafid Power" className="h-10 w-auto object-contain bg-white/5 rounded-lg p-1" />
+              <p className="text-gray-400 text-sm">
+                جميع الحقوق محفوظة &copy; {currentYear} <span className="text-white font-semibold">Rafid Power Company</span> — مكتب الرافدين للموازين
+              </p>
+            </div>
 
             {/* Social Media */}
             <div className="flex gap-4">

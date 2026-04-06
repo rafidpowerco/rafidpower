@@ -7,7 +7,7 @@ export default function SovereignAgiWidget() {
   const { t, isRTL } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<{role: 'user'|'agi', text: string}[]>([
-    { role: 'agi', text: isRTL ? 'مرحباً! أنا "الرافدين AGI" (المعالج الذكي السيادي). أراقب النظام 24/7. كيف يمكنني مساعدتك في اختيار الميزان الجسري المناسب؟' : 'Hello! I am "Rafidain AGI" (The Sovereign Intelligent Processor). I monitor the system 24/7. How can I assist you with your truck scale needs?' }
+    { role: 'agi', text: isRTL ? 'مرحباً! أنا ZIND (زند) — الذكاء الاصطناعي السيادي لشركة الرافدين. أراقب المنظومة 24/7. كيف يمكنني مساعدتك اليوم؟' : 'Hello! I am ZIND — The Sovereign AI of Al-Rafidain. I monitor the system 24/7. How can I assist you today?' }
   ]);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
@@ -29,7 +29,7 @@ export default function SovereignAgiWidget() {
     return () => window.removeEventListener('click', handleAction);
   }, []);
 
-  const handleSend = () => {
+  const handleSend = async () => {
     if (!input.trim()) return;
     
     const userMsg = input.trim();
@@ -37,12 +37,26 @@ export default function SovereignAgiWidget() {
     setInput('');
     setIsTyping(true);
 
-    setTimeout(() => {
-      setIsTyping(false);
+    try {
+      // Connect to the local AGI nerve center
+      const apiUrl = import.meta.env.VITE_AGI_API_URL || "http://localhost:9000";
+      const response = await fetch(`${apiUrl}/agi/think`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ task_description: userMsg })
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setMessages(prev => [...prev, { role: 'agi', text: data.engineered_solution }]);
+      } else {
+        throw new Error("AGI Core disconnected");
+      }
+    } catch (error) {
+      // Fallback if the AGI daemon is not running yet
       let reply = '';
-      
       const lowerMsg = userMsg.toLowerCase();
-      // Keyword detection for advanced engineering responses
+      
       if (lowerMsg.includes('plc') || lowerMsg.includes('برمجة') || lowerMsg.includes('تحكم') || lowerMsg.includes('automation')) {
         reply = isRTL 
           ? 'تم تحليل الاستعلام. أنظمة (PLC) التي نستخدمها مدعومة لتعمل بتوافق كامل مع خطوط الإنتاج الحديثة، توفر دقة بـ 0.01 وتتكامل مع بروتوكولات (Modbus). سيقوم كبير المهندسين بتزويدك بالكتالوج الفني.' 
@@ -57,12 +71,14 @@ export default function SovereignAgiWidget() {
           : 'Absolutely. This request has been routed to RAFID POWER sales. For an accurate quote, please provide the required scale capacity.';
       } else {
         reply = isRTL 
-          ? 'تم تسجيل الاستعلام في قاعدة بيانات الرافدين. أقوم بمعالجة متطلبات منشأتك لتوفير أفضل (Load Cells) وأنظمة (PLC). سأقوم بتوجيه أحد المهندسين الخبراء إليك فوراً.'
-          : 'Query logged into Rafidain database. I am processing your facility requirements to provide the best Load Cells and PLC systems. An expert engineer will be directed to you.';
+          ? '[النظام يعمل في وضع الخوادم الاحتياطية]: تم تسجيل الاستعلام. سأقوم بتوجيه أحد المهندسين الخبراء إليك فوراً.'
+          : '[System running in fallback mode]: Query logged. An expert engineer will contact you shortly.';
       }
       
       setMessages(prev => [...prev, { role: 'agi', text: reply }]);
-    }, 1500);
+    } finally {
+      setIsTyping(false);
+    }
   };
 
   return (
@@ -106,10 +122,10 @@ export default function SovereignAgiWidget() {
                   <div className="absolute bottom-0 right-0 w-3 h-3 bg-green-500 border-2 border-[#1a3a52] rounded-full animate-pulse"></div>
                 </div>
                 <div>
-                  <h3 className="font-bold text-sm tracking-wide">Al-Rafidain Sovereign AGI</h3>
+                  <h3 className="font-bold text-sm tracking-[0.15em] uppercase">ZIND · زند</h3>
                   <p className="text-[10px] text-gray-300 font-mono tracking-widest uppercase flex items-center gap-1">
-                    <span className="w-1.5 h-1.5 bg-[#F5060B] rounded-full animate-ping"></span>
-                    Learning System Active
+                    <span className="w-1.5 h-1.5 bg-green-400 rounded-full animate-ping"></span>
+                    Sovereign AI · Online
                   </p>
                 </div>
               </div>
@@ -141,7 +157,7 @@ export default function SovereignAgiWidget() {
                     {msg.role === 'agi' && (
                       <div className="flex items-center gap-1.5 mb-1 opacity-50">
                         <Cpu size={12} />
-                        <span className="text-[10px] font-mono tracking-wider uppercase">AGI CORE</span>
+                        <span className="text-[10px] font-mono tracking-wider uppercase">ZIND</span>
                       </div>
                     )}
                     {msg.text}
@@ -167,7 +183,7 @@ export default function SovereignAgiWidget() {
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={(e) => e.key === 'Enter' && handleSend()}
-                  placeholder={isRTL ? "اسأل النظام السيادي..." : "Ask the Sovereign AGI..."}
+                  placeholder={isRTL ? "اسأل ZIND..." : "Ask ZIND..."}
                   className="flex-1 bg-transparent border-none outline-none px-3 text-sm text-gray-700 placeholder-gray-400"
                 />
                 <button 
@@ -185,7 +201,7 @@ export default function SovereignAgiWidget() {
             {/* Minimal footer */}
             <div className="bg-gray-100 py-1.5 text-center border-t border-gray-200">
               <span className="text-[9px] text-gray-400 uppercase font-mono tracking-widest">
-                Powered by Al-Rafidain Neural Engine
+                ZIND · Powered by Al-Rafidain Neural Engine
               </span>
             </div>
           </motion.div>

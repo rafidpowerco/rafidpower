@@ -28,8 +28,21 @@
             height: 100vh;
             display: flex;
             overflow: hidden;
+            -webkit-backdrop-filter: blur(20px);
             backdrop-filter: blur(20px);
         }
+
+        .subtitle { font-size: 1rem; color: #8892b0; font-weight: 300; }
+        .section-title { margin-top: 0; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; }
+        .status-dot-blue { background: var(--neon-blue); box-shadow: 0 0 10px var(--neon-blue); }
+        .text-dim { color: #8892b0; }
+        .flex-spacer { flex-grow: 1; }
+        .footer-text { text-align: center; color: #8892b0; font-size: 0.8rem; }
+        .metric-temp { color: var(--neon-green); }
+        .metric-status { color: var(--neon-purple); font-size: 1.5rem; line-height: 2.2rem; }
+        .btn-intel { background: linear-gradient(45deg, #00ff88, #00d2ff); color: var(--bg-dark); white-space: nowrap; }
+        .success-chip { font-size: 0.8rem; background: var(--neon-green); color: black; border-radius: 5px; padding: 2px 8px; }
+        .domain-chip { font-size: 0.8rem; color: var(--neon-purple); border: 1px solid; border-radius: 5px; padding: 2px 8px; }
 
         .sidebar {
             width: 280px;
@@ -47,6 +60,7 @@
             font-weight: 800;
             background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
             text-shadow: 0 0 20px rgba(0, 210, 255, 0.3);
             text-align: center;
@@ -106,6 +120,7 @@
             border-radius: 20px;
             display: flex;
             flex-direction: column;
+            -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             overflow: hidden;
@@ -237,26 +252,26 @@
 
     <!-- الجزء الأيمن: معلومات السيطرة -->
     <div class="sidebar">
-        <div class="logo">AL-RAFIDAIN<br><span style="font-size: 1rem; color: #8892b0; font-weight: 300;">SOVEREIGN AGI</span></div>
+        <div class="logo">AL-RAFIDAIN<br><span class="subtitle">SOVEREIGN AGI</span></div>
         
         <div class="system-status">
-            <h3 style="margin-top: 0; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;">وعي النظام الداخلي</h3>
+            <h3 class="section-title">وعي النظام الداخلي</h3>
             <div class="status-item">
                 <span>الشبكة العصبية</span>
                 <span class="status-dot"></span>
             </div>
             <div class="status-item">
                 <span>المراقب (عين الصقر)</span>
-                <span class="status-dot" style="background:var(--neon-blue); box-shadow:0 0 10px var(--neon-blue);"></span>
+                <span class="status-dot status-dot-blue"></span>
             </div>
             <div class="status-item">
                 <span>متصل بالمعمل (PLC)</span>
-                <span id="plc-status" style="color: #8892b0;">جاري الفحص...</span>
+                <span id="plc-status" class="text-dim">جاري الفحص...</span>
             </div>
         </div>
 
-        <div style="flex-grow: 1;"></div>
-        <div style="text-align: center; color: #8892b0; font-size: 0.8rem;">
+        <div class="flex-spacer"></div>
+        <div class="footer-text">
             النسخة العسكرية السيادية<br>
             لا تتطلب اتصال إنترنت خارجي
         </div>
@@ -268,16 +283,16 @@
         <!-- المؤشرات الحية -->
         <div class="metrics-grid">
             <div class="metric-card">
-                <div style="color: #8892b0;">النفط - الخام الثقيل</div>
+                <div class="text-dim">النفط - الخام الثقيل</div>
                 <div class="metric-value" id="oil-price">--.--$</div>
             </div>
             <div class="metric-card">
-                <div style="color: #8892b0;">حرارة ماكينات الصلب</div>
-                <div class="metric-value" id="plc-temp" style="color: var(--neon-green);">--°C</div>
+                <div class="text-dim">حرارة ماكينات الصلب</div>
+                <div class="metric-value metric-temp" id="plc-temp">--°C</div>
             </div>
             <div class="metric-card">
-                <div style="color: #8892b0;">حالة الجاهزية والرد</div>
-                <div class="metric-value" style="color: var(--neon-purple); font-size: 1.5rem; line-height: 2.2rem;">🟢 مستقر</div>
+                <div class="text-dim">حالة الجاهزية والرد</div>
+                <div class="metric-value metric-status">🟢 مستقر</div>
             </div>
         </div>
 
@@ -292,7 +307,7 @@
             <div class="input-area">
                 <input type="text" id="promptInput" placeholder="أمر عام للذكاء، أو اسم مادة خام/سهم (النفط، الذهب، ابل)..." onkeypress="handleEnter(event)">
                 <button onclick="sendPrompt()">تنفيذ (برمجيات وعامة)</button>
-                <button onclick="sendMarketIntel()" style="background: linear-gradient(45deg, #00ff88, #00d2ff); color: var(--bg-dark); white-space: nowrap;">تصفح الأخبار و الجلب (أسهم)</button>
+                <button onclick="sendMarketIntel()" class="btn-intel">تصفح الأخبار و الجلب (أسهم)</button>
             </div>
         </div>
 
@@ -339,7 +354,7 @@
                 const data = await response.json();
                 
                 document.getElementById(loadingId).innerHTML = `
-                    <span style="font-size:0.8rem; background:var(--neon-green); color:black; border-radius:5px; padding:2px 8px;">مهمة التصفح المباشر ناجحة ✓</span><br><br>
+                    <span class="success-chip">مهمة التصفح المباشر ناجحة ✓</span><br><br>
                     ${formatText(data.engineered_solution)}
                 `;
             } catch(e) {
@@ -367,7 +382,7 @@
                 
                 // تحديث الرسالة بالرد النهائي
                 document.getElementById(loadingId).innerHTML = `
-                    <span style="font-size:0.8rem; color:var(--neon-purple); border:1px solid; border-radius:5px; padding:2px 8px;">نطاق التفكير: ${data.domain_assigned}</span><br><br>
+                    <span class="domain-chip">نطاق التفكير: ${data.domain_assigned}</span><br><br>
                     ${formatText(data.engineered_solution)}
                 `;
             } catch(e) {

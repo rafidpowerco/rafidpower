@@ -140,3 +140,30 @@ runtime.local.json
 
 # Nested repo history preserved locally after vendoring chinese-ai-bot-self-learning into monorepo
 AI/AAA/chinese-ai-bot-full-advanced/chinese-ai-bot-self-learning/.git_nested_repo_backup/
+
+# ==============================================================================
+# AL-RAFIDAIN SOVEREIGN AGI - STRICT SECURITY AND IP PROTECTION
+# ==============================================================================
+# الذواكر العصبية وقواعد البيانات
+AI/AlRafidain_Universal_AGI/AGI_Vector_Memory/
+AI/AlRafidain_Universal_AGI/AlRafidain_Neural_Connections.json
+AI/AlRafidain_Universal_AGI/*.json
+
+# السجلات الخاصة بالمصنع
+AI/AlRafidain_Universal_AGI/Logs/
+AI/AlRafidain_Universal_AGI/*.log
+
+# النسخ التجارية والمشفرة
+AI/AlRafidain_Universal_AGI/AlRafidain_Secured_Core/
+AI/AlRafidain_Universal_AGI/COMMERCIAL_DISTRIBUTION/
+COMMERCIAL_DISTRIBUTION/
+
+# مسارات بيثون الداخلية المخفية
+**/__pycache__/
+*.pyc
+
+# إخفاء ملفات الاختصارات الشخصية
+CREATE_SHORTCUTS.vbs
+*.lnk
+AL_RAFIDAIN_MASTER_START.bat
+
