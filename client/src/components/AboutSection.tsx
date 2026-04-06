@@ -51,7 +51,7 @@ export default function AboutSection() {
           <div className="relative">
             <div className="bg-white/10 backdrop-blur rounded-lg overflow-hidden shadow-2xl border border-white/20">
               <img
-                src="/images/about.png"
+                src="https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?auto=format&fit=crop&q=80&w=1000"
                 alt="شركة الرافدين للموازين"
                 className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
               />

@@ -6,43 +6,49 @@ export default function ProjectsSection() {
       id: 1,
       title: 'ميزان جسري 100 طن',
       location: 'أربيل - مجمع صناعي',
-      image: '/images/projects/project-1.png',
-      category: 'تركيب جديد'
+      image: 'https://images.unsplash.com/photo-1506806732259-39c2d0268443?auto=format&fit=crop&q=80&w=800',
+      category: 'تركيب جديد',
+      delayClass: ''
     },
     {
       id: 2,
       title: 'نظام أوزان مخزنية',
       location: 'السليمانية - مستودعات',
-      image: '/images/projects/project-2.png',
-      category: 'أتمتة'
+      image: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800',
+      category: 'أتمتة',
+      delayClass: 'delay-[150ms]'
     },
     {
       id: 3,
       title: 'صيانة ومعايرة دورية',
       location: 'دهوك - موقع نفطي',
-      image: '/images/projects/project-3.png',
-      category: 'صيانة'
+      image: 'https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&q=80&w=800',
+      category: 'صيانة',
+      delayClass: 'delay-[300ms]'
     },
     {
       id: 4,
       title: 'ميزان شاحنات ذكي',
       location: 'بغداد - مركز لوجستي',
-      image: '/images/projects/project-4.png',
-      category: 'تركيب متطور'
+      image: 'https://images.unsplash.com/photo-1542626991-cbc4e32524cc?auto=format&fit=crop&q=80&w=800',
+      category: 'تركيب متطور',
+      delayClass: 'delay-[450ms]'
     },
     {
       id: 5,
       title: 'تطوير رؤوس الموازين',
       location: 'الموصل - معامل أغذية',
-      image: '/images/projects/project-5.png',
-      category: 'تحديث أنظمة'
+      image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800',
+      category: 'تحديث أنظمة',
+      delayClass: 'delay-[600ms]'
     },
     {
       id: 6,
       title: 'ميزان منصة هيدروليكي',
       location: 'ناحية خورمال - مشاريع زراعية',
-      image: '/images/projects/project-6.png',
-      category: 'حلول مخصصة'
+      image: 'https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?auto=format&fit=crop&q=80&w=800',
+      category: 'حلول مخصصة',
+      delayClass: 'delay-[750ms]'
     },
   ];
 
@@ -64,8 +70,7 @@ export default function ProjectsSection() {
           {projects.map((project, index) => (
             <div 
               key={project.id} 
-              className="group relative overflow-hidden rounded-2xl shadow-xl bg-white animate-scale-in"
-              style={{ animationDelay: `${index * 150}ms` }}
+              className={`group relative overflow-hidden rounded-2xl shadow-xl bg-white animate-scale-in opacity-0 animate-fill-forwards ${project.delayClass}`}
             >
               <div className="aspect-[4/3] overflow-hidden">
                 <img 
