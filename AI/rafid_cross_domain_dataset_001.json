@@ -1,0 +1,62 @@
+[
+  {
+    "domain_overlap": "Stock Market + Accounting + Programming",
+    "scenario": "Global steel futures (HRC) spike by 22% due to supply chain disruption, impacting the manufacturing cost of 80-ton weighbridge decks.",
+    "logic_step": "1. Fetch HRC futures via Market API. 2. Automatically recalculate the COGS (Cost of Goods Sold) in the Accounting ledger using Double-Entry logic. 3. Adjust the minimum acceptable margin threshold in the Sales single EXE to prevent selling at a loss.",
+    "code_snippet": "def update_cogs_logic(steel_price_change_pct, current_cogs):\n    new_cogs = current_cogs * (1 + (steel_price_change_pct * 0.70)) # Assuming steel is 70% of material cost\n    db_execute('UPDATE accounting_ledger SET estimated_cost = ? WHERE component = \"steel_deck\"', (new_cogs,))\n    return new_cogs"
+  },
+  {
+    "domain_overlap": "Automation + Programming + Accounting",
+    "scenario": "A client delays payment for a SmartBridge software license for 45 days. The system must autonomously restrict features without losing data, and update accounts receivable.",
+    "logic_step": "1. Accounting module detects Ageing Accounts Receivable > 30 days. 2. Triggers n8n webhook to issue soft-lock command. 3. SmartBridge EXE receives payload, disables Excel export capabilities, and flashes a 'Payment Pending' UI warning.",
+    "code_snippet": "if (get_days_since_invoice() > 30) {\n    EnforceLicenseRestriction(Feature::EXPORT_EXCEL, false);\n    AccountingAPI.log_event(\"AR_WARNING\", \"Soft-lock applied to HWID: \" + SystemHWID);\n}"
+  },
+  {
+    "domain_overlap": "Stock Market + Automation",
+    "scenario": "Copper prices plummet, making new shielded load cell cables significantly cheaper. The system must alert procurement to restock while prices are optimal.",
+    "logic_step": "1. Independent Finance Learner detects Copper (HG=F) drop > 8%. 2. Cross-references current inventory of cables via ERP API. 3. If stock < 500m, automatically generate a Purchase Order draft via n8n and email the Procurement Manager.",
+    "code_snippet": "import requests\nif copper_drop_pct > 0.08 and current_stock < 500:\n    n8n_payload = {'action': 'draft_po', 'item': 'shielded_cable', 'qty': 1000}\n    requests.post('http://internal.n8n:5678/webhook/procurement', json=n8n_payload)"
+  },
+  {
+    "domain_overlap": "Programming + Accounting",
+    "scenario": "To optimize taxation, the system needs to depreciate the value of load cells used in internal factory testing over 3 years using the Straight-Line method.",
+    "logic_step": "1. Run an end-of-month scheduled worker within the Single EXE. 2. Calculate monthly depreciation expense. 3. Debit 'Depreciation Expense' and Credit 'Accumulated Depreciation' strictly via Double-Entry rule.",
+    "code_snippet": "void CalculateDepreciation() {\n    double assetValue = 15000.0; double salvage = 1500.0;\n    double monthlyExp = (assetValue - salvage) / (3 * 12);\n    Ledger.Insert(DEBIT, \"Depreciation Expense\", monthlyExp);\n    Ledger.Insert(CREDIT, \"Accum_Depreciation\", monthlyExp);\n}"
+  },
+  {
+    "domain_overlap": "Automation + Programming + Stock Market",
+    "scenario": "A geopolitical event causes high volatility in currency exchange rates. The local scale software quotes customers in USD but accepts local currency. Exchange rate must be locked precisely at the moment the ticket is printed.",
+    "logic_step": "1. SmartBridge EXE polls Forex API every 60 seconds for live USD/IQD rate. 2. When 'Print Ticket' is pressed, it hashes the applied exchange rate into the QR code payload. 3. Triggers an automated accounting entry reflecting the exact FX gain/loss margin.",
+    "code_snippet": "live_rate = fetch_fx_rate('USD', 'IQD')\nticket_total_iqd = calculate_net_weight() * price_per_ton_usd * live_rate\nqr_payload = generate_hmac(f'{ticket_id}|{live_rate}|{ticket_total_iqd}')\nprint_to_thermal(ticket_total_iqd, qr_payload)"
+  },
+  {
+    "domain_overlap": "Programming + Accounting + Automation",
+    "scenario": "A hardware failure in a junction box requires a warranty replacement. The system must process an RMA, adjust inventory, and handle the cost write-off.",
+    "logic_step": "1. Service technician scans the broken part's QR. 2. SmartBridge validates warranty status locally (Single EXE). 3. Automation triggers a replacement dispatch from the warehouse. 4. Accounting records a COGS write-off for the defective unit.",
+    "code_snippet": "if validate_warranty(hwid) == True:\n    trigger_n8n_workflow('dispatch_replacement', hwid)\n    ledger.post_transaction(debit='Warranty_Expense', credit='Inventory', amount=part_cost)"
+  },
+  {
+    "domain_overlap": "Stock Market + Programming",
+    "scenario": "News sentiment analysis detects a massive impending shortage in standard HX711 AD converters due to factory shutdowns in Asia.",
+    "logic_step": "1. Sovereign AGI natural language processor parses global tech news. 2. Identifies 'HX711' and 'shortage' with >90% confidence. 3. Instructs the C++ embedded scale software to optimize A/D read cycles to prolong the lifespan of currently deployed chips by reducing thermal load.",
+    "code_snippet": "// Dynamic hardware throttling\nif (MarketAI.GetStatus(\"HX711\") == SHORTAGE) {\n    ADC_Sampling_Rate.Set(10_HZ); // Down from 80_HZ to reduce thermal stress\n    Log(\"Hardware preservation mode engaged.\");\n}"
+  },
+  {
+    "domain_overlap": "Accounting + Automation",
+    "scenario": "Client exceeds the predefined weighing limits of their subscription tier (e.g., >500 tickets/month).",
+    "logic_step": "1. SQLite local DB counter hits 501. 2. SmartBridge local trigger connects to billing API via n8n. 3. Automatically generates an overage invoice and posts revenue to the Unearned Revenue holding account until paid.",
+    "code_snippet": "const ticketCount = db.prepare('SELECT COUNT(*) FROM tickets WHERE month = ?').get(currentMonth);\nif (ticketCount > 500) {\n    await sendWebhook('billing_overage', { customerId, excessTickets: ticketCount - 500 });\n}"
+  },
+  {
+    "domain_overlap": "Programming + Stock Market + Accounting",
+    "scenario": "A client requests a quote for a 120-ton weighbridge. The Sales AGI must generate a dynamic quote that guarantees a 20% margin despite live fluctuations in steel and electronics markets.",
+    "logic_step": "1. AGI reads real-time steel and sensor futures. 2. Computes the estimated BOM (Bill of Materials) cost dynamically. 3. Applies the 20% margin equation. 4. Generates a PDF quote valid for exactly 48 hours, injecting the logic into the CRM.",
+    "code_snippet": "def generate_dynamic_quote(bom):\n    cost = sum(fetch_live_price(item) * qty for item, qty in bom.items())\n    quote_price = cost / (1 - 0.20) # 20% Gross Margin\n    return create_pdf(quote_price, expiry_hours=48)"
+  },
+  {
+    "domain_overlap": "Automation + Engineering + Accounting",
+    "scenario": "SmartBridge detects chronic overloading (trucks > 100 tons on an 80-ton scale). It must void the hardware warranty and bill the client for an emergency structural inspection.",
+    "logic_step": "1. Load cell array reports 125% of nominal capacity. 2. AGI logs 'Warranty Violation' locally. 3. n8n automation creates a high-priority service ticket and dispatches an invoice for 'Heavy Load Inspection' directly from the Accounting module.",
+    "code_snippet": "if (current_weight > MAX_CAPACITY * 1.1) {\n    VoidWarranty(SystemID, \"Chronic Overload Detected\");\n    Accounting.GenerateInvoice(SystemID, ServiceType.INSPECTION, 250.00);\n}"
+  }
+]

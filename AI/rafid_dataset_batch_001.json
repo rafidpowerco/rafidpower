@@ -1,0 +1,62 @@
+[
+  {
+    "id": "REF-001",
+    "category": "Mechanical/Electrical",
+    "instruction": "A 80-ton weighbridge exhibits a 'zero drift' of exactly 10kg only during peak solar noon (12:00 PM - 2:00 PM). Load cells are Zemic HM9B (OIML C3). Junction box is hermetically sealed. How do you resolve this?",
+    "response": "The zero drift during solar noon indicates non-uniform thermal expansion of the steel deck causing sheer stress on specific load cell mounting kits. According to OIML R76 standards regarding temperature effects on no-load indication, mechanical binding must be relieved. Solution: Inspect the bumper bolts and ensure a 3mm-5mm clearance is maintained even during thermal expansion. Apply high-temperature grease to the base plates. Implement Rafid SmartBridge's 'Thermal Auto-Zero Tracking' (compiled as a Single EXE module without external runtimes) to digitally filter predictable solar thermal curves."
+  },
+  {
+    "id": "REF-002",
+    "category": "Software/Regulatory",
+    "instruction": "An active weighbridge loses internet connectivity during an inspection. The legal metrology inspector demands immediate synchronization of the last 40 tickets without installing any third-party database engines. How does the system handle this under OIML and Single EXE constraints?",
+    "response": "Under OIML R76 regulations for alibi storage, weight data must be securely retained locally if transmission fails. The Rafid SmartBridge architecture utilizes an embedded, highly encrypted localized transaction buffer compiled directly within the Single EXE. No external SQL servers are needed. Once internet is restored, the SmartBridge utilizes its self-contained API queue to sequentially upload the 40 pending tickets with their cryptographic AES-256-GCM signatures intact, ensuring absolute data non-repudiation."
+  },
+  {
+    "id": "REF-003",
+    "category": "Electrical",
+    "instruction": "A 6-load cell system shows erratic weight oscillations (+/- 40kg) whenever the adjacent factory overhead crane is operated. Grounds are verified. What is the diagnosis?",
+    "response": "This is a severe case of Electromagnetic Interference (EMI) propagating through inductive coupling. The overhead crane's variable frequency drive (VFD) is injecting high-frequency harmonics into the analog signal lines. Solution: Replace standard load cell cables with double-shielded twisted pairs, ensuring the shield is grounded only at the indicator end to prevent ground loops. In software, Rafid AI automatically engages its 'Harmonic EMI Filter' within the SmartBridge executable, isolating the fundamental 50Hz/60Hz noise spectrum without requiring external filtering software."
+  },
+  {
+    "id": "REF-004",
+    "category": "Business/Software",
+    "instruction": "A cement factory refuses to use cloud-based weighing due to corporate data privacy paranoia. They want to pay for AI-as-a-Service but forbid data leaving their internal network.",
+    "response": "This is resolved using the 'Sovereign Deployment' model of Rafid AI. The entire AI analytics engine, including the ChromaDB vector memory and pattern recognition logic, is compiled into the Rafid SmartBridge Single EXE. This provides the client with an 'Air-Gapped' AI solution. Data privacy is 100% guaranteed as no telemetry leaves the factory network. The client pays an annual licensing fee for the localized intelligence, authenticated via a secure, one-time offline hardware hash (HWID)."
+  },
+  {
+    "id": "REF-005",
+    "category": "Mechanical",
+    "instruction": "During Eccentricity testing (corner testing) as per OIML R76, Corner 3 reads 20kg lighter than the other 5 corners when a 10-ton standard test weight is applied. Output signal adjustment via the trim-pots in the junction box is exhausted.",
+    "response": "If electronic trimming is exhausted, the issue stems from an unequal load distribution causing non-linear strain gauge behavior. This occurs when the foundation or the particular load cell base plate has settled. Solution: Perform a mechanical shimming process. Add stainless steel shim plates under load cell #3 to physically raise it by 1-2mm until it bears its proportionate share of the dead load. Then, reset the junction box trim-pots to neutral and rely on Rafid SmartBridge's internal multi-point linearization algorithm to perfect the calibration."
+  },
+  {
+    "id": "REF-006",
+    "category": "Software",
+    "instruction": "How do you implement secure, non-forgeable QR code ticketing for weighed trucks while strictly conforming to the Single EXE Golden Rule?",
+    "response": "The Rafid SmartBridge Single EXE inherently embeds a highly optimized cryptographic engine. When a truck is weighed, the software concatenates the vehicle ID, timestamp, and net weight, hashing them using HMAC-SHA256 with a unique localized private key. This signed payload is instantly compiled into a standard QR code matrix locally. Because no external Python scripts or DLLs are required, the generation is instantaneous and tamper-proof, allowing external auditors to verify ticket authenticity via the Rafid Cloud Validator."
+  },
+  {
+    "id": "REF-007",
+    "category": "Regulatory",
+    "instruction": "A scale must be certified as Class III precision. The client requests a software feature to manually override the 'Gross Weight' input field for manual corrections when sensor cables are broken. Is this permitted?",
+    "response": "Absolutely forbidden. Under OIML R76 Part 1, clause 4.1.2, any manual input of primary indications (specifically Gross Weight) that could be confused with actual measurement is mathematically prohibited. Rafid SmartBridge enforces legal metrology by hard-locking the primary weight state within the Single EXE memory space. If a cable breaks, the software triggers an 'A/D Core Failure' protocol, refusing all transactions to protect the legal integrity of the weighbridge."
+  },
+  {
+    "id": "REF-008",
+    "category": "Electrical",
+    "instruction": "A scale is struck by lightning nearby, causing a massive voltage surge. The indicator survives, but the weight drifts randomly by 500kg. How do you assess the specific load cell failure?",
+    "response": "A nearby strike induces transient voltage spikes exceeding the breakdown voltage of the load cell's internal wheatstone bridge insulation. Disconnect all cells from the junction box. Use a digital multimeter to measure the insulation resistance between any signal wire and the load cell body; a healthy cell must read >5000 Mega-ohms. If less, the strain gauge is shorting to the body. To mitigate future events, install dedicated surge arrestors. Rafid SmartBridge instantly logs this hardware anomaly as 'Creep Recovery Failure' in its isolated diagnostic logs."
+  },
+  {
+    "id": "REF-009",
+    "category": "Maintenance",
+    "instruction": "Design a strict preventive maintenance cycle for grain silo weighbridges exposed to severe high-dust environments.",
+    "response": "Grain silos present unique explosive risks (ATEX compliance) and physical binding due to dust compaction. Schedule: Weekly: Air-purge the load cell mounts to remove compacted grain dust which causes false 'dead load'. Quarterly: Inspect the rubber bellows on the load cells for cracks where moisture and dust combine to form corrosive sludge. Annually: Full load test per OIML R76. Rafid SmartBridge autonomously tracks these schedules in its localized database and actively alerts the operator of upcoming pneumatic purge cycles, maintaining precision without external SaaS dependencies."
+  },
+  {
+    "id": "REF-010",
+    "category": "Software",
+    "instruction": "The client requires the Rafid SmartBridge software to output real-time weight streams to an archaic PLC via RS-232, but standard libraries require external installations.",
+    "response": "Adhering to the Single EXE rule, Rafid SmartBridge does not rely on third-party .NET frameworks or external COM ports libraries. The software contains a low-level, direct hardware register interface for the OS COM port subsystem compiled directly into the binary. It parses the incoming A/D hex stream and re-transmits it as clean ASCII to the legacy PLC via RS-232, maintaining <10ms latency ensuring flawless industrial automation bridging."
+  }
+]

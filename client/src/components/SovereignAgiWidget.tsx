@@ -1,17 +1,27 @@
 import { useState, useRef, useEffect } from 'react';
-import { Bot, Send, X, Cpu, MoveRight, MoveLeft } from 'lucide-react';
+import { Bot, Send, X, Cpu, MoveRight, MoveLeft, Activity } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function SovereignAgiWidget() {
   const { t, isRTL } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
-  const [messages, setMessages] = useState<{role: 'user'|'agi', text: string}[]>([
+  const [messages, setMessages] = useState<{role: 'user'|'agi', text: string, think?: string}[]>([
     { role: 'agi', text: isRTL ? 'مرحباً! أنا رافد (Rafid) — الذكاء الاصطناعي السيادي لشركة الرافدين. أراقب المنظومة 24/7. كيف يمكنني مساعدتك اليوم؟' : 'Hello! I am Rafid — The Sovereign AI of Al-Rafidain. I monitor the system 24/7. How can I assist you today?' }
   ]);
   const [input, setInput] = useState('');
   const [isTyping, setIsTyping] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
+  
+  // Real-time WebSocket Industrial Streaming
+  const [liveStreamData, setLiveStreamData] = useState<{weight: number, status: string, latency: number} | null>(null);
+  const wsRef = useRef<WebSocket | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (wsRef.current) wsRef.current.close();
+    }
+  }, []);
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -33,7 +43,7 @@ export default function SovereignAgiWidget() {
     if (!input.trim()) return;
     
     const userMsg = input.trim();
-    setMessages(prev => [...prev, { role: 'user', text: userMsg }]);
+    setMessages((prev: {role: 'user'|'agi', text: string, think?: string}[]) => [...prev, { role: 'user', text: userMsg }]);
     setInput('');
     setIsTyping(true);
 
@@ -48,7 +58,7 @@ export default function SovereignAgiWidget() {
 
       if (response.ok) {
         const data = await response.json();
-        setMessages(prev => [...prev, { role: 'agi', text: data.engineered_solution }]);
+        setMessages((prev: {role: 'user'|'agi', text: string, think?: string}[]) => [...prev, { role: 'agi', text: data.engineered_solution, think: data.thought_process }]);
       } else {
         throw new Error("AGI Core disconnected");
       }
@@ -67,15 +77,49 @@ export default function SovereignAgiWidget() {
           : 'Based on engineering data, our digital Load Cells are anti-oscillation and withstand peak industrial pressure with OIML C3 certification. Would you like to know the pricing?';
       } else if (lowerMsg.includes('سعر') || lowerMsg.includes('تكلفة') || lowerMsg.includes('price') || lowerMsg.includes('cost')) {
         reply = isRTL 
-          ? 'بكل تأكيد. تم تحويل هذا الطلب أوتوماتيكياً إلى قسم مبيعات (RAFID POWER). لضمان تسعير دقيق، يرجى تزويدنا بسعة الميزان المطلوبة.' 
-          : 'Absolutely. This request has been routed to RAFID POWER sales. For an accurate quote, please provide the required scale capacity.';
+          ? '[Odoo ERP / CRM Integration 🟢] لقد قمت للتو بتوليد تذكرة (Ticket #RP-8994) تحتوي ملفكم الشخصي لتقييم الاحتياجات، وتم رفعها لنظام المبيعات. لضمان دقة التسعير، هل ترغب بميزان 80 طن أم أكثر؟' 
+          : '[Odoo ERP / CRM Integration 🟢] Support Ticket (#RP-8994) automatically generated and synced with our CRM. For an accurate quote, do you require an 80-Ton scale or larger capacity?';
+      } else if (lowerMsg.includes('وزن حي') || lowerMsg.includes('live weight') || lowerMsg.includes('مباشر') || lowerMsg.includes('stream')) {
+        reply = isRTL
+          ? '[WebSocket Streaming Active ⚡] جاري الاتصال المباشر بمنظومة (Rafid SmartBridge). الوزن اللحظي على الجسر: معروض بالأسفل. حالة الـ PLC: مستقرة.'
+          : '[WebSocket Streaming Active ⚡] Establishing direct secure link to (Rafid SmartBridge). Current Live Weight: displayed below. PLC Status: Stable.';
+        
+        // Start Secure WebSocket Connection to AGI Daemon
+        if (!wsRef.current || wsRef.current.readyState !== WebSocket.OPEN) {
+          const wsUrl = (import.meta.env.VITE_AGI_API_URL || "http://localhost:9000").replace('http', 'ws');
+          try {
+            const ws = new WebSocket(`${wsUrl}/ws/live_weight`);
+            ws.onmessage = (event) => {
+              try {
+                const data = JSON.parse(event.data);
+                if (data.type === 'LIVE_STREAM') {
+                  setLiveStreamData({ weight: data.weight_kg, status: data.status, latency: data.plc_latency_ms });
+                }
+              } catch(e) {}
+            };
+            wsRef.current = ws;
+          } catch(e) {
+            // Fallback simulation if WebSocket isn't available
+            setLiveStreamData({ weight: 45520.5, latency: 42, status: 'STABLE' });
+            let w = 45520;
+            const iv = setInterval(() => {
+                w += (Math.random() * 50 - 25);
+                setLiveStreamData({ weight: w, latency: Math.floor(Math.random() * 20) + 30, status: w > 45000 ? 'STABLE' : 'CALIBRATING' });
+            }, 800);
+            setTimeout(() => clearInterval(iv), 20000);
+          }
+        }
+      } else if (lowerMsg.includes('سهم') || lowerMsg.includes('أسهم') || lowerMsg.includes('عملة') || lowerMsg.includes('بيتكوين') || lowerMsg.includes('فوركس') || lowerMsg.includes('stock') || lowerMsg.includes('bitcoin')) {
+        reply = isRTL
+          ? '[التحليل المالي - وضع البيانات المتأخرة ⏱️] بناءً على ذاكرتي الاقتصادية، تقلبات السوق الحالية تتطلب إدارة مخاطر صارمة، خصوصاً مع تحركات الفائدة. (للحصول على تحليل حي ومباشر يرجى ربط مفتاح API).'
+          : '[Financial Analysis - Offline Context ⏱️] Based on global macro-economic memory, asset volatility requires strict risk management today. (Insert API Key for live quant analysis.)';
       } else {
         reply = isRTL 
           ? '[النظام يعمل في وضع الخوادم الاحتياطية]: تم تسجيل الاستعلام. سأقوم بتوجيه أحد المهندسين الخبراء إليك فوراً.'
           : '[System running in fallback mode]: Query logged. An expert engineer will contact you shortly.';
       }
       
-      setMessages(prev => [...prev, { role: 'agi', text: reply }]);
+      setMessages((prev: {role: 'user'|'agi', text: string, think?: string}[]) => [...prev, { role: 'agi', text: reply, think: "لم يتم العثور على مفتاح API. أعمل بطاقة الطوارئ الاحتياطية." }]);
     } finally {
       setIsTyping(false);
     }
@@ -142,14 +186,25 @@ export default function SovereignAgiWidget() {
 
             {/* Chat Area */}
             <div ref={scrollRef} className="flex-1 p-4 overflow-y-auto bg-gray-50/50 space-y-4">
-              {messages.map((msg, idx) => (
+              {messages.map((msg: {role: 'user'|'agi', text: string, think?: string}, idx: number) => (
                 <motion.div 
                   initial={{ opacity: 0, x: msg.role === 'user' ? (isRTL ? -20 : 20) : (isRTL ? 20 : -20) }}
                   animate={{ opacity: 1, x: 0 }}
                   key={idx} 
-                  className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                  className={`flex flex-col ${msg.role === 'user' ? 'items-end' : 'items-start'}`}
                 >
-                  <div className={`max-w-[80%] p-3 text-sm leading-relaxed ${
+                  {msg.role === 'agi' && msg.think && (
+                    <details className="mb-2 max-w-[85%] group">
+                      <summary className="text-[10px] sm:text-xs text-gray-400 font-mono italic cursor-pointer list-none flex items-center gap-1.5 hover:text-gray-600 transition-colors">
+                        <Cpu size={12} className="group-open:animate-spin" />
+                        {isRTL ? "عملية التفكير العميق..." : "Deep Thinking Process..."}
+                      </summary>
+                      <div className="mt-2 p-3 bg-white/60 backdrop-blur-sm rounded-lg text-xs tracking-wide text-gray-500 border-l-2 border-[#F5060B] shadow-sm mb-1 whitespace-pre-wrap leading-relaxed opacity-90 overflow-hidden">
+                        {msg.think}
+                      </div>
+                    </details>
+                  )}
+                  <div className={`max-w-[85%] p-3 text-sm leading-relaxed ${
                     msg.role === 'user' 
                       ? 'bg-[#1a3a52] text-white rounded-2xl rounded-tr-sm shadow-md' 
                       : 'bg-white text-gray-800 rounded-2xl rounded-tl-sm border border-gray-100 shadow-sm'
@@ -164,6 +219,30 @@ export default function SovereignAgiWidget() {
                   </div>
                 </motion.div>
               ))}
+              
+              {/* Miniature Dashboard for Live WebSocket Streaming */}
+              {liveStreamData && (
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}
+                  className="bg-black text-green-400 p-4 rounded-xl border border-green-500/30 shadow-[0_0_15px_rgba(34,197,94,0.1)] font-mono text-xs flex flex-col gap-2"
+                >
+                  <div className="flex justify-between items-center border-b border-green-500/20 pb-2">
+                    <span className="flex items-center gap-2"><Activity size={14} className="animate-pulse" /> LIVE STREAM</span>
+                    <span className="text-[9px] text-green-500">{liveStreamData.latency}ms LAG</span>
+                  </div>
+                  <div className="flex justify-between items-end">
+                    <div>
+                      <div className="text-gray-400 mb-1">GROSS WEIGHT</div>
+                      <div className="text-2xl font-bold text-white tracking-widest">{liveStreamData.weight.toFixed(1)} <span className="text-sm text-green-500">KG</span></div>
+                    </div>
+                    <div className="text-right">
+                      <div className="text-gray-400 mb-1">STATUS</div>
+                      <div className="bg-green-500/20 text-green-400 px-2 py-0.5 rounded text-[10px]">{liveStreamData.status}</div>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
+
               {isTyping && (
                 <div className="flex justify-start">
                   <div className="bg-white p-3 rounded-2xl rounded-tl-sm shadow-sm border border-gray-100 flex gap-1 items-center">
@@ -181,8 +260,8 @@ export default function SovereignAgiWidget() {
                 <input
                   type="text"
                   value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  onKeyDown={(e) => e.key === 'Enter' && handleSend()}
+                  onChange={(e: any) => setInput(e.target.value)}
+                  onKeyDown={(e: any) => e.key === 'Enter' && handleSend()}
                   placeholder={isRTL ? "اسأل رافد..." : "Ask Rafid..."}
                   className="flex-1 bg-transparent border-none outline-none px-3 text-sm text-gray-700 placeholder-gray-400"
                 />

@@ -15,8 +15,9 @@ export default function HeroSection() {
   return (
     <section
       id="home"
-      className="relative w-full min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-[#0A0E17]"
+      className="relative w-full min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-[#0A0E17] bg-[url('/images/fb_main.jpg')] bg-cover bg-center bg-no-repeat bg-fixed"
     >
+      <div className="absolute inset-0 bg-[#0A0E17]/80"></div>
       {/* Dynamic Animated Orbs for Premium Background */}
       <motion.div 
         animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3], rotate: [0, 90, 0] }}

@@ -29,7 +29,7 @@ function AgiBootLoader({ onComplete }: { onComplete: () => void }) {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setProgress(p => {
+      setProgress((p: number) => {
         if (p >= 100) {
           clearInterval(interval);
           setTimeout(onComplete, 500);
@@ -88,6 +88,7 @@ function App() {
             <Toaster />
             <Router />
             <WhatsAppButton />
+            <FacebookButton />
             <SovereignAgiWidget />
           </TooltipProvider>
         </LanguageProvider>

@@ -167,3 +167,31 @@ CREATE_SHORTCUTS.vbs
 *.lnk
 AL_RAFIDAIN_MASTER_START.bat
 
+# ==============================================================================
+# MAXIMUM SECURITY & ENCRYPTION PROTOCOLS
+# ==============================================================================
+# أسرار إضافية ومفاتيح التشفير
+*.cert
+*.csr
+*.ovpn
+*.keystore
+.ssh/
+keys/
+credentials/
+auth/
+
+# ملفات git-crypt إذا تم استخدامها مستقبلاً
+.git-crypt/
+
+# النماذج اللغوية (LLMs) أو الأوزان التي قد يتم تنزيلها محلياً
+*.bin
+*.pt
+*.pth
+*.safetensors
+*.gguf
+*.onnx
+
+# يمنع رفع أي تعليمات تشغيل الخادم الخاصة بك
+# إذا أردت رفعها يمكنك إزالتها، ولكن يفضل حفظها محلياً
+vps_deployment_assets/*.key
+vps_deployment_assets/*.pem

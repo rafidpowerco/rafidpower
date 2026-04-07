@@ -1,5 +1,6 @@
 import { CheckCircle2 } from 'lucide-react';
 import { useLanguage } from '@/contexts/LanguageContext';
+import { motion } from 'framer-motion';
 
 /**
  * About Section - Modern Industrial Design
@@ -48,32 +49,47 @@ export default function AboutSection() {
           </div>
 
           {/* Right Image */}
-          <div className="relative">
-            <div className="bg-white/10 backdrop-blur rounded-lg overflow-hidden shadow-2xl border border-white/20">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9, rotate: 2 }}
+            whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, type: 'spring', bounce: 0.4 }}
+            className="relative lg:w-1/2"
+          >
+            {/* Decorative background element behind image */}
+            <div className="absolute -inset-4 bg-gradient-to-tr from-[#1a3a52]/20 to-[#e63946]/20 rounded-2xl blur-xl transform -rotate-3"></div>
+            
+            <div className="bg-white/10 backdrop-blur rounded-2xl overflow-hidden shadow-2xl border border-white/40 relative z-10">
               <img
-                src="https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?auto=format&fit=crop&q=80&w=1000"
+                src="/images/factory_weighing_system.png"
                 alt="شركة الرافدين للموازين"
-                className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
+                className="w-full h-full object-cover hover:scale-110 transition-transform duration-700 ease-in-out"
               />
-
+              <div className="absolute inset-0 bg-gradient-to-t from-[#1a3a52]/80 via-transparent to-transparent"></div>
             </div>
 
             {/* Stats Overlay */}
-            <div className="grid grid-cols-3 gap-4 mt-8">
-              <div className="bg-white/10 backdrop-blur rounded-lg p-4 text-center border border-white/20">
-                <div className="text-3xl font-bold text-[#e63946]">35+</div>
-                <div className="text-sm text-gray-100 mt-2">سنة خبرة</div>
+            <motion.div 
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="grid grid-cols-3 gap-3 md:gap-4 mt-6 md:absolute md:-bottom-10 md:left-10 md:right-10 z-20"
+            >
+              <div className="bg-white/95 backdrop-blur-md rounded-xl p-4 text-center border-b-4 border-[#e63946] shadow-xl hover:-translate-y-2 transition-transform duration-300">
+                <div className="text-3xl md:text-4xl font-black text-[#1a3a52]"><span className="text-[#e63946]">35</span>+</div>
+                <div className="text-xs md:text-sm text-gray-500 font-bold uppercase tracking-wider mt-1">سنة خبرة</div>
               </div>
-              <div className="bg-white/10 backdrop-blur rounded-lg p-4 text-center border border-white/20">
-                <div className="text-3xl font-bold text-[#e63946]">1000+</div>
-                <div className="text-sm text-gray-100 mt-2">عميل راضي</div>
+              <div className="bg-white/95 backdrop-blur-md rounded-xl p-4 text-center border-b-4 border-[#e63946] shadow-xl hover:-translate-y-2 transition-transform duration-300 delay-75">
+                <div className="text-3xl md:text-4xl font-black text-[#1a3a52]"><span className="text-[#e63946]">1K</span>+</div>
+                <div className="text-xs md:text-sm text-gray-500 font-bold uppercase tracking-wider mt-1">عميل راضي</div>
               </div>
-              <div className="bg-white/10 backdrop-blur rounded-lg p-4 text-center border border-white/20">
-                <div className="text-3xl font-bold text-[#e63946]">100%</div>
-                <div className="text-sm text-gray-100 mt-2">ضمان الجودة</div>
+              <div className="bg-white/95 backdrop-blur-md rounded-xl p-4 text-center border-b-4 border-[#e63946] shadow-xl hover:-translate-y-2 transition-transform duration-300 delay-150">
+                <div className="text-3xl md:text-4xl font-black text-[#1a3a52]"><span className="text-[#e63946]">100</span>%</div>
+                <div className="text-xs md:text-sm text-gray-500 font-bold uppercase tracking-wider mt-1">ضمان الجودة</div>
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
     </section>

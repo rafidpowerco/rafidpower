@@ -49,9 +49,10 @@ class AutoDeveloperAgent:
             
             user_prompt = f"الهدف: {goal}\nنتيجة الفعل السابق: {observation}\nما هي خطوتك التالية؟"
             
+            import asyncio
             try:
-                # العقل يفكر ويقرر الإجراء
-                llm_response = self.llm.generate(f"System: {system_prompt}\nUser: {user_prompt}")
+                # العقل يفكر ويقرر الإجراء (نستخدم asyncio.run لأن generate دالة غير متزامنة)
+                llm_response = asyncio.run(self.llm.generate(f"System: {system_prompt}\nUser: {user_prompt}", "write_python_code"))
                 
                 # نحن هنا نتعامل مع الذكاء الاصطناعي كبرنامج (Parising JSON)
                 # (سنفترض استجابة الـ LLM مثالية للتوضيح المعماري)
